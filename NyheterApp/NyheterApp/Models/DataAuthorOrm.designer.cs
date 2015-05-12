@@ -229,7 +229,7 @@ namespace NyheterApp.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="New_Author", Storage="_News", ThisKey="NyhetID", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="News_Author", Storage="_News", ThisKey="NyhetID", OtherKey="Id", IsForeignKey=true)]
 		public News News
 		{
 			get
@@ -424,7 +424,7 @@ namespace NyheterApp.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="New_Author", Storage="_Authors", ThisKey="Id", OtherKey="NyhetID")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="News_Author", Storage="_Authors", ThisKey="Id", OtherKey="NyhetID")]
 		public EntitySet<Author> Authors
 		{
 			get

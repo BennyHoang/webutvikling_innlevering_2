@@ -8,14 +8,14 @@
         <elementListCompartment Id="c427a0af-da97-40f3-bacc-3266bddda516" absoluteBounds="0.76500000000000012, 3.21, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="26f2ab02-c210-4bcd-a551-dd6255fa9049" absoluteBounds="4.75, 3, 2, 1.7708968098958331">
+    <classShape Id="26f2ab02-c210-4bcd-a551-dd6255fa9049" absoluteBounds="3, 1, 2, 1.7708968098958331">
       <DataClassMoniker Name="/DataAuthorOrmDataContext/News" />
       <nestedChildShapes>
-        <elementListCompartment Id="8b4c17b9-e84d-48db-a353-9de8129ec7e6" absoluteBounds="4.765, 3.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="8b4c17b9-e84d-48db-a353-9de8129ec7e6" absoluteBounds="3.0149999999999997, 1.46, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.75 : 3.76044840494792); (2.75 : 3.76044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
-      <AssociationMoniker Name="/DataAuthorOrmDataContext/News/New_Author" />
+    <associationConnector edgePoints="[(4 : 2.77089680989583); (4 : 3.64589730989583); (2.75 : 3.64589730989583)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/DataAuthorOrmDataContext/News/News_Author" />
       <nodes>
         <classShapeMoniker Id="26f2ab02-c210-4bcd-a551-dd6255fa9049" />
         <classShapeMoniker Id="f3fd839c-392e-4a9a-92f1-0949dadfa5b5" />
