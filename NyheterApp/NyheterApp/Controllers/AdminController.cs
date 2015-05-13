@@ -19,11 +19,30 @@ namespace NyheterApp.Controllers
         }
 
 
-        //Vis nyhet
+
+        //NB DENNE FUNKER IKKE!!!!!!!!
+        //Vis nyheter   
         public ActionResult VisAlleNyheter()
         {
-            return View();
+            //LINQ
+            //1. koble til ORM (DB)
+            using (DataAuthorOrmDataContext DataAuthor = new DataAuthorOrmDataContext())
+            {
+
+                //2. LINQ-spørringen
+                List<News> newsListe = (from News in DataAuthor.Authors
+                                            select Tekst).ToList();
+
+                //3. Sende resultat av LINQ-spørring til View
+
+                return View(newsListe);
+            }
         }
+
+
+       
+   
+    
 
 
         //Vis en nyhet
