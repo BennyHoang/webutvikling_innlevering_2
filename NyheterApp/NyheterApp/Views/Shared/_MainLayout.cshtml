@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+        <link href="@Url.Content("~/Styles/style.css")" rel="stylesheet" type="text/css" />
+        @RenderSection("Styles", false)
+  
+</head>
+<body>
+
+    <header>
+        <div class="midtstill">
+            <h1>Nyheter.no - Adminpanel</h1>
+        </div>
+    </header>
+
+    <nav class="midtstill">
+        <ul>
+            <li>@Html.ActionLink("Alle nyheter", "visAlleNyheter")</li>
+            <li>@Html.ActionLink("Lag ny nyhet", "LagNyNyhet")</li>
+            <li>@Html.ActionLink("Rediger nyheter", "RedigerNyheter")</li>
+
+
+        </ul>
+    </nav>
+
+
+
+    <div id="wrapper" class="midtstill">
+        @RenderBody()
+    </div>
+</body>
+</html>

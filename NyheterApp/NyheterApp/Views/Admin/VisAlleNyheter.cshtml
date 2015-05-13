@@ -1,0 +1,26 @@
+﻿@Model IEnumerable<NyheterApp.models.News>
+ 
+
+    @{
+        ViewBag.Title = "VisAlleNyheter";
+    }
+
+    <h2>Alle nyheter</h2>
+
+
+    @if (Model != null && Model.Count() > 0)
+    {
+
+        foreach (var news in Model)
+        {
+            <article>
+                <h3>@news.Tittel</h3>
+                <p>@news.Tekst</p>
+
+            </article>
+        }
+    }
+    else
+    {
+        <p>Ingen nyhetsartikler er skrevet enda</p>
+    }
