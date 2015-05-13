@@ -30,8 +30,8 @@ namespace NyheterApp.Controllers
             {
 
                 //2. LINQ-spørringen
-                List<News> newsListe = (from News in DataAuthor.Authors
-                                            select Tekst).ToList();
+                List<New> newsListe = (from New in DataAuthor.News
+                                            select New).ToList();
 
                 //3. Sende resultat av LINQ-spørring til View
 

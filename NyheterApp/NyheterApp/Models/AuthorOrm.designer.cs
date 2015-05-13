@@ -33,9 +33,9 @@ namespace NyheterApp.Models
     partial void InsertAuthor(Author instance);
     partial void UpdateAuthor(Author instance);
     partial void DeleteAuthor(Author instance);
-    partial void InsertNews(News instance);
-    partial void UpdateNews(News instance);
-    partial void DeleteNews(News instance);
+    partial void InsertNew(New instance);
+    partial void UpdateNew(New instance);
+    partial void DeleteNew(New instance);
     #endregion
 		
 		public DataAuthorOrmDataContext() : 
@@ -76,11 +76,11 @@ namespace NyheterApp.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<News> News
+		public System.Data.Linq.Table<New> News
 		{
 			get
 			{
-				return this.GetTable<News>();
+				return this.GetTable<New>();
 			}
 		}
 	}
@@ -99,9 +99,7 @@ namespace NyheterApp.Models
 		
 		private string _Mobil;
 		
-		private System.Nullable<int> _NyhetID;
-		
-		private EntityRef<News> _News;
+		private EntitySet<New> _News;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -115,13 +113,11 @@ namespace NyheterApp.Models
     partial void OnEtternavnChanged();
     partial void OnMobilChanging(string value);
     partial void OnMobilChanged();
-    partial void OnNyhetIDChanging(System.Nullable<int> value);
-    partial void OnNyhetIDChanged();
     #endregion
 		
 		public Author()
 		{
-			this._News = default(EntityRef<News>);
+			this._News = new EntitySet<New>(new Action<New>(this.attach_News), new Action<New>(this.detach_News));
 			OnCreated();
 		}
 		
@@ -205,61 +201,16 @@ namespace NyheterApp.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NyhetID", DbType="Int")]
-		public System.Nullable<int> NyhetID
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Author_News", Storage="_News", ThisKey="Id", OtherKey="AuthorID")]
+		public EntitySet<New> News
 		{
 			get
 			{
-				return this._NyhetID;
+				return this._News;
 			}
 			set
 			{
-				if ((this._NyhetID != value))
-				{
-					if (this._News.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnNyhetIDChanging(value);
-					this.SendPropertyChanging();
-					this._NyhetID = value;
-					this.SendPropertyChanged("NyhetID");
-					this.OnNyhetIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="News_Author", Storage="_News", ThisKey="NyhetID", OtherKey="Id", IsForeignKey=true)]
-		public News News
-		{
-			get
-			{
-				return this._News.Entity;
-			}
-			set
-			{
-				News previousValue = this._News.Entity;
-				if (((previousValue != value) 
-							|| (this._News.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._News.Entity = null;
-						previousValue.Authors.Remove(this);
-					}
-					this._News.Entity = value;
-					if ((value != null))
-					{
-						value.Authors.Add(this);
-						this._NyhetID = value.Id;
-					}
-					else
-					{
-						this._NyhetID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("News");
-				}
+				this._News.Assign(value);
 			}
 		}
 		
@@ -282,10 +233,22 @@ namespace NyheterApp.Models
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
+		
+		private void attach_News(New entity)
+		{
+			this.SendPropertyChanging();
+			entity.Author = this;
+		}
+		
+		private void detach_News(New entity)
+		{
+			this.SendPropertyChanging();
+			entity.Author = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.News")]
-	public partial class News : INotifyPropertyChanging, INotifyPropertyChanged
+	public partial class New : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
@@ -300,7 +263,9 @@ namespace NyheterApp.Models
 		
 		private string _BildeSrc;
 		
-		private EntitySet<Author> _Authors;
+		private System.Nullable<int> _AuthorID;
+		
+		private EntityRef<Author> _Author;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -316,11 +281,13 @@ namespace NyheterApp.Models
     partial void OnDatoPostetChanged();
     partial void OnBildeSrcChanging(string value);
     partial void OnBildeSrcChanged();
+    partial void OnAuthorIDChanging(System.Nullable<int> value);
+    partial void OnAuthorIDChanged();
     #endregion
 		
-		public News()
+		public New()
 		{
-			this._Authors = new EntitySet<Author>(new Action<Author>(this.attach_Authors), new Action<Author>(this.detach_Authors));
+			this._Author = default(EntityRef<Author>);
 			OnCreated();
 		}
 		
@@ -424,16 +391,61 @@ namespace NyheterApp.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="News_Author", Storage="_Authors", ThisKey="Id", OtherKey="NyhetID")]
-		public EntitySet<Author> Authors
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AuthorID", DbType="Int")]
+		public System.Nullable<int> AuthorID
 		{
 			get
 			{
-				return this._Authors;
+				return this._AuthorID;
 			}
 			set
 			{
-				this._Authors.Assign(value);
+				if ((this._AuthorID != value))
+				{
+					if (this._Author.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnAuthorIDChanging(value);
+					this.SendPropertyChanging();
+					this._AuthorID = value;
+					this.SendPropertyChanged("AuthorID");
+					this.OnAuthorIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Author_News", Storage="_Author", ThisKey="AuthorID", OtherKey="Id", IsForeignKey=true)]
+		public Author Author
+		{
+			get
+			{
+				return this._Author.Entity;
+			}
+			set
+			{
+				Author previousValue = this._Author.Entity;
+				if (((previousValue != value) 
+							|| (this._Author.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Author.Entity = null;
+						previousValue.News.Remove(this);
+					}
+					this._Author.Entity = value;
+					if ((value != null))
+					{
+						value.News.Add(this);
+						this._AuthorID = value.Id;
+					}
+					else
+					{
+						this._AuthorID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("Author");
+				}
 			}
 		}
 		
@@ -455,18 +467,6 @@ namespace NyheterApp.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_Authors(Author entity)
-		{
-			this.SendPropertyChanging();
-			entity.News = this;
-		}
-		
-		private void detach_Authors(Author entity)
-		{
-			this.SendPropertyChanging();
-			entity.News = null;
 		}
 	}
 }

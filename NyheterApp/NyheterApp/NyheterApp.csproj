@@ -122,19 +122,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DataAuthorOrm.designer.cs">
+    <Compile Include="Models\AuthorOrm.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DataAuthorOrm.dbml</DependentUpon>
+      <DependentUpon>AuthorOrm.dbml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <Content Include="Models\DataAuthorOrm.dbml">
+    <Content Include="Models\AuthorOrm.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>DataAuthorOrm.designer.cs</LastGenOutput>
+      <LastGenOutput>AuthorOrm.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -157,8 +157,8 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Models\DataAuthorOrm.dbml.layout">
-      <DependentUpon>DataAuthorOrm.dbml</DependentUpon>
+    <None Include="Models\AuthorOrm.dbml.layout">
+      <DependentUpon>AuthorOrm.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <PropertyGroup>
