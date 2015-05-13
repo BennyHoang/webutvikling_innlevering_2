@@ -19,11 +19,11 @@ namespace NyheterApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult LagreAnsatt(New news)
+        public ActionResult LagNyNyhet(New news)
         {
             using (DataAuthorOrmDataContext DataAuthor = new DataAuthorOrmDataContext())
             {
-                DataAuthor.New.InsertOnSubmit(news);
+                DataAuthor.News.InsertOnSubmit(news);
                 DataAuthor.SubmitChanges();
             }
             return View();
