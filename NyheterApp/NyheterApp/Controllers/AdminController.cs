@@ -10,17 +10,28 @@ namespace NyheterApp.Controllers
     public class AdminController : Controller
     {
 
-        //LAgnyhet siden
-
+        //Lagnyhet siden
+        [HttpGet]
         public ActionResult LagNyNyhet()
         {
 
             return View();
         }
 
+        [HttpPost]
+        public ActionResult LagreAnsatt(New news)
+        {
+            using (DataAuthorOrmDataContext DataAuthor = new DataAuthorOrmDataContext())
+            {
+                DataAuthor.News.InsertOnSubmit(news);
+                DataAuthor.SubmitChanges();
+            }
+            return View();
+        }
 
 
-        //NB DENNE FUNKER IKKE!!!!!!!!
+
+
         //Vis nyheter   
         public ActionResult VisAlleNyheter()
         {

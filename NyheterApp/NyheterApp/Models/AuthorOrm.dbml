@@ -6,7 +6,7 @@
       <Column Name="Fornavn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Etternavn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Mobil" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Association Name="Author_News" Member="News" ThisKey="Id" OtherKey="AuthorID" Type="New" />
+      <Association Name="Author_New" Member="News" ThisKey="Id" OtherKey="AuthorID" Type="New" />
     </Type>
   </Table>
   <Table Name="dbo.News" Member="News">
@@ -17,7 +17,7 @@
       <Column Name="DatoPostet" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="BildeSrc" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="AuthorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Author_News" Member="Author" ThisKey="AuthorID" OtherKey="Id" Type="Author" IsForeignKey="true" />
+      <Association Name="Author_New" Member="Author" ThisKey="AuthorID" OtherKey="Id" Type="Author" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

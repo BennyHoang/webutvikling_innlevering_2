@@ -1,4 +1,4 @@
-﻿@model NyheterApp.Models.News
+﻿@model NyheterApp.Models.New
 
 
 @{
@@ -18,10 +18,10 @@
         </tr>
         <tr>
             <td>@Html.Label("tekstTxt", "Tekst")</td>
-            <td>@Html.TextAreaFor(News => News.Tekst, new { id = "artikkelTekst" })</td>
+            <td>@Html.TextAreaFor(y => y.Tekst, new { id = "artikkelTekst" })</td>
         </tr>
         <tr>
-            <td>@Html.Label("bildeopplast", "Velg bilde")</td>
+            <td>@Html.Label("bildeopplast", "Velg bilde")</td> 
             <td><input id="bildeopplast" type="file" name="bildefil" /></td>
         </tr>
     </table>

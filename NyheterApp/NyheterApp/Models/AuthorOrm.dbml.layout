@@ -15,7 +15,7 @@
       </nestedChildShapes>
     </classShape>
     <associationConnector edgePoints="[(4.25 : 1.91429768880208); (2.5 : 1.91429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/DataAuthorOrmDataContext/Author/Author_News" />
+      <AssociationMoniker Name="/DataAuthorOrmDataContext/Author/Author_New" />
       <nodes>
         <classShapeMoniker Id="1471289b-09ad-42f5-84d1-05c0c78780f6" />
         <classShapeMoniker Id="89ac261e-c0d2-4896-83e4-3e062e675d70" />
