@@ -23,7 +23,7 @@ namespace NyheterApp.Controllers
         {
             using (DataAuthorOrmDataContext DataAuthor = new DataAuthorOrmDataContext())
             {
-                DataAuthor.News.InsertOnSubmit(news);
+                DataAuthor.New.InsertOnSubmit(news);
                 DataAuthor.SubmitChanges();
             }
             return View();
