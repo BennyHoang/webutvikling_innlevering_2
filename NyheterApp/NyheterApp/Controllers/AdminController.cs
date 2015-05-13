@@ -15,7 +15,6 @@ namespace NyheterApp.Controllers
         [HttpGet]
         public ActionResult LagNyNyhet()
         {
-
             return View();
         }
 
@@ -30,13 +29,12 @@ namespace NyheterApp.Controllers
                 String bildefilsti = Path.Combine(Server.MapPath("~/Content/Bilder"), bildenavn);
                 bildefil.SaveAs(bildefilsti);
 
-                using (DataAuthorOrmDataContext DataAuthor = new DataAuthorOrmDataContext())
-            {
-
-                news.BildeSrc = bildenavn;
-                DataAuthor.News.InsertOnSubmit(news);
-                DataAuthor.SubmitChanges();
-            }
+                 using (DataAuthorOrmDataContext DataAuthor = new DataAuthorOrmDataContext())
+                {
+                    news.BildeSrc = bildenavn;
+                    DataAuthor.News.InsertOnSubmit(news);
+                    DataAuthor.SubmitChanges();
+                }
                 ViewBag.LastetOpp = true;
 
             }

@@ -8,7 +8,7 @@
 <h2>LagNyhet</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("LagNyNyhet", "Admin", FormMethod.Post, new { enctype="multipart/form-data" }))
 {
 
     <table>
@@ -25,12 +25,9 @@
             <td><input id="bildeopplast" type="file" name="bildefil" /></td>
         </tr>
     </table>
-
-
     <input type="submit" value="Lagre nyhet" />
 
 }
-
 
 @if (ViewBag.LastetOpp != null)
 {
@@ -39,8 +36,9 @@
 
         <p>Lagringen av fil ble gjenomørt</p>
     }
+    else
+    {
+        <p>en feil skjedde @ViewBag.Feilmelding</p>
+    }
 
-}
-else {
-<p>en feil skjedde</p>
 }
