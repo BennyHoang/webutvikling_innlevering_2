@@ -11,7 +11,7 @@ namespace NyheterApp.Controllers
 
         //LAgnyhet siden
 
-        public ActionResult LagNyhet()
+        public ActionResult LagNyNyhet()
         {
 
             return View();

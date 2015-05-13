@@ -1,0 +1,32 @@
+﻿@model NyheterApp.Models.News
+
+
+@{
+    ViewBag.Title = "LagNyNyhet";
+}
+
+<h2>LagNyhet</h2>
+
+
+@using (Html.BeginForm())
+{
+
+    <table>
+        <tr>
+            <td>@Html.Label("tittelTxt", "Tittel")</td>
+            <td>@Html.TextBoxFor(x => x.Tittel, new { Tittel = "tittelTxt" })</td>
+        </tr>
+        <tr>
+            <td>@Html.Label("tekstTxt", "Tekst")</td>
+            <td>@Html.TextAreaFor(News => News.Tekst, new { id = "artikkelTekst" })</td>
+        </tr>
+        <tr>
+            <td>@Html.Label("bildeopplast", "Velg bilde")</td>
+            <td><input id="bildeopplast" type="file" name="bildefil" /></td>
+        </tr>
+    </table>
+
+
+    <input type="submit" value="Lagre nyhet" />
+
+}

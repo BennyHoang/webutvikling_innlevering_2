@@ -4,24 +4,31 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+        <link href="@Url.Content("~/Styles/style.css")" rel="stylesheet" type="text/css" />
+        @RenderSection("Styles", false)
+  
 </head>
 <body>
 
     <header>
-        <h1>Bildeopplasting</h1>
+        <div id="headerinnhold" class="midtstill">
+            <h1>Bildeopplasting</h1>
+        </div>
     </header>
 
-    <nav>
+    <nav class="midtstill">
         <ul>
             <li>@Html.ActionLink("Alle nyheter", "visAlleNyheter")</li>
-            <li>@Html.ActionLink("Lag ny nyhet", "LagNyhet")</li>
+            <li>@Html.ActionLink("Lag ny nyhet", "LagNyNyhet")</li>
             <li>@Html.ActionLink("Rediger nyheter", "RedigerNyheter")</li>
 
 
         </ul>
     </nav>
 
-    <div>
+
+
+    <div id="wrapper" class="midtstill">
         @RenderBody()
     </div>
 </body>
