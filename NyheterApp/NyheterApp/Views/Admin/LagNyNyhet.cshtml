@@ -30,3 +30,17 @@
     <input type="submit" value="Lagre nyhet" />
 
 }
+
+
+@if (ViewBag.LastetOpp != null)
+{
+    if (ViewBag.LastetOpp == true)
+    {
+
+        <p>Lagringen av fil ble gjenomørt</p>
+    }
+
+}
+else {
+<p>en feil skjedde</p>
+}

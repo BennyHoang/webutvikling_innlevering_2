@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using NyheterApp.Models;
+using System.IO;
 
 namespace NyheterApp.Controllers
 {
@@ -19,17 +20,66 @@ namespace NyheterApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult LagNyNyhet(New news)
+        public ActionResult LagNyNyhet(New news, HttpPostedFileBase bildefil)
         {
-            using (DataAuthorOrmDataContext DataAuthor = new DataAuthorOrmDataContext())
+
+            try
             {
+                //Lagre bildefil
+                String bildenavn = Path.GetFileName(bildefil.FileName);
+                String bildefilsti = Path.Combine(Server.MapPath("~/Content/Bilder"), bildenavn);
+                bildefil.SaveAs(bildefilsti);
+
+                using (DataAuthorOrmDataContext DataAuthor = new DataAuthorOrmDataContext())
+            {
+
+                news.BildeSrc = bildenavn;
                 DataAuthor.News.InsertOnSubmit(news);
                 DataAuthor.SubmitChanges();
+            }
+                ViewBag.LastetOpp = true;
+
+            }
+            catch (Exception ex)
+            {
+                ViewBag.LastetOpp = false;
+                ViewBag.Feilmelding = ex.Message;
             }
             return View();
         }
 
+       /* [HttpPost]
+        public ActionResult LagNyNyhet(new bilde, HttpPostedFileBase bildefil)
+        {
+            try
+            {
+                //Lagre bildefil
+                String bildenavn = Path.GetFileName(bildefil.FileName);
+                String bildefilsti = Path.Combine(Server.MapPath("~/Content/Bilder"), bildenavn);
+                bildefil.SaveAs(bildefilsti);
 
+                //Lagre ny bildeentitet
+                using (BilderOrmDataContext bilderOrm = new BilderOrmDataContext())
+                {
+                    bilde.BildeSrc = bildenavn;
+
+                    bilderOrm.Bildes.InsertOnSubmit(bilde);
+                    bilderOrm.SubmitChanges();
+                }
+
+                ViewBag.LastetOpp = true;
+
+            }
+            catch (Exception ex)
+            {
+                ViewBag.LastetOpp = false;
+                ViewBag.Feilmelding = ex.Message;
+            }
+
+
+            return View();
+        }
+        */
 
 
         //Vis nyheter   
