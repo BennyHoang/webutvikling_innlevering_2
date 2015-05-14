@@ -13,11 +13,13 @@
 
         foreach (var Nyhets in Model)
         {
-            <article class="artikkelOversikt">
+            //Denne legger en url rundt hele nyhetsartikkelen, slik at den er klikkbar
+            <a class="artikkelLink" href="@Url.Action("visEnNyhet", new { id = @Nyhets.Id })">
+            <article class="artikkelOversikt" >
                 <h3>@Nyhets.Tittel</h3>
                 <img class="artikkelbilde" src="~/Content/Bilder/@Nyhets.BildeSrc" />
-                @Html.ActionLink("Les mer", "VisEnNyhet", new { id = @Nyhets.Id })
             </article>
+           </a>
         }
     }
     else
