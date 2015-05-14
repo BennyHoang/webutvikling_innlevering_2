@@ -9,7 +9,7 @@
       </nestedChildShapes>
     </classShape>
     <classShape Id="89ac261e-c0d2-4896-83e4-3e062e675d70" absoluteBounds="0.5, 0.875, 2, 1.9631982421875">
-      <DataClassMoniker Name="/DataAuthorOrmDataContext/New" />
+      <DataClassMoniker Name="/DataAuthorOrmDataContext/Nyhet" />
       <nestedChildShapes>
         <elementListCompartment Id="5af5b345-55e3-4afc-850e-685b29cc6640" absoluteBounds="0.51500000000000012, 1.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NyheterApp.Models.New>
+﻿@model IEnumerable<NyheterApp.Models.Nyhet>
 
 @{
     ViewBag.Title = "VisEnNyhet";
@@ -7,10 +7,10 @@
 <h2>Vis En Nyhet</h2>
 @if (Model != null && Model.Count() > 0)
 {
-    foreach (var news in Model)
+    foreach (var Nyhets in Model)
     {
         <article>
-            <h3>@news.Tittel</h3>
+            <h3>@Nyhets.Tittel</h3>
         </article>
     }
 }

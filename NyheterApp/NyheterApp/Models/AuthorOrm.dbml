@@ -6,11 +6,11 @@
       <Column Name="Fornavn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Etternavn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Mobil" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Association Name="Author_New" Member="News" ThisKey="Id" OtherKey="AuthorID" Type="New" />
+      <Association Name="Author_New" Member="Nyhets" Storage="_News" ThisKey="Id" OtherKey="AuthorID" Type="Nyhet" />
     </Type>
   </Table>
-  <Table Name="dbo.News" Member="News">
-    <Type Name="New">
+  <Table Name="dbo.News" Member="Nyhets">
+    <Type Name="Nyhet">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="Tittel" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Tekst" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />

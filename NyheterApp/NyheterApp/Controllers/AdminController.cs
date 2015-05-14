@@ -18,7 +18,7 @@ namespace NyheterApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult LagNyNyhet(New news, HttpPostedFileBase bildefil)
+        public ActionResult LagNyNyhet(Nyhet Nyhets, HttpPostedFileBase bildefil)
         {
 
             try
@@ -30,8 +30,8 @@ namespace NyheterApp.Controllers
 
                  using (DataAuthorOrmDataContext DataAuthor = new DataAuthorOrmDataContext())
                 {
-                    news.BildeSrc = bildenavn;
-                    DataAuthor.News.InsertOnSubmit(news);
+                    Nyhets.BildeSrc = bildenavn;
+                    DataAuthor.Nyhets.InsertOnSubmit(Nyhets);
                     DataAuthor.SubmitChanges();
                 }
                 ViewBag.LastetOpp = true;
@@ -56,18 +56,18 @@ namespace NyheterApp.Controllers
             {
 
                 //2. LINQ-spørringen
-                List<New> newsListe = (from New in DataAuthor.News
-                                            select New).ToList();
+                List<Nyhet> NyhetsListe = (from Nyhet in DataAuthor.Nyhets
+                                            select Nyhet).ToList();
 
                 //3. Sende resultat av LINQ-spørring til View
 
-                return View(newsListe);
+                return View(NyhetsListe);
             }
         }
 
         [HttpGet]
 
-        public ActionResult VisEnNyhet(New nyhet)
+        public ActionResult VisEnNyhet(Nyhet nyhet)
         {
             return View();
         }
@@ -79,9 +79,9 @@ namespace NyheterApp.Controllers
             {
                 using (DataAuthorOrmDataContext nyhetOrm = new DataAuthorOrmDataContext())
                 {
-                    New valgtArtikkel = (from news in nyhetOrm.News
-                                        where news.Id == id
-                                        select news).SingleOrDefault();
+                    Nyhet valgtArtikkel = (from Nyhets in nyhetOrm.Nyhets
+                                        where Nyhets.Id == id
+                                        select Nyhets).SingleOrDefault();
                     return View(valgtArtikkel);
                 }
 

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<NyheterApp.Models.New>
+﻿@model IEnumerable<NyheterApp.Models.Nyhet>
  
 
     @{
@@ -11,12 +11,12 @@
     @if (Model != null && Model.Count() > 0)
     {
 
-        foreach (var news in Model)
+        foreach (var Nyhets in Model)
         {
             <article class="artikkelOversikt">
-                <h3>@news.Tittel</h3>
-                <img src="~/Content/Bilder/@news.BildeSrc" />
-                @Html.ActionLink("Les mer", "VisEnNyhet", new { id = @news.Id })
+                <h3>@Nyhets.Tittel</h3>
+                <img src="~/Content/Bilder/@Nyhets.BildeSrc" />
+                @Html.ActionLink("Les mer", "VisEnNyhet", new { id = @Nyhets.Id })
             </article>
         }
     }
