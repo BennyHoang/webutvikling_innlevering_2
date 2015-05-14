@@ -57,8 +57,8 @@ namespace NyheterApp.Controllers
             {
 
                 //2. LINQ-spørringen
-                List<Nyhet> NyhetsListe = (from Nyhet in DataAuthor.Nyhets
-                                            select Nyhet).ToList();
+                List<Nyhet> NyhetsListe = (from nyheter in DataAuthor.Nyhets
+                                            select nyheter).ToList();
 
                 //3. Sende resultat av LINQ-spørring til View
 
@@ -74,13 +74,9 @@ namespace NyheterApp.Controllers
             {
                 using (DataAuthorOrmDataContext nyhetOrm = new DataAuthorOrmDataContext())
                 {
-                    Nyhet valgtArtikkel = (from Nyhets in nyhetOrm.Nyhets
-                                        where Nyhets.Id == id
-                                        select Nyhets).SingleOrDefault();
-                    ViewBag.ValgtArtikkelTittel = valgtArtikkel.Tittel;
-                    ViewBag.ValgtArtikkelBilde = valgtArtikkel.BildeSrc;
-                    ViewBag.ValgtArtikkelTekst = valgtArtikkel.Tekst;
-                    ViewBag.ValgtArtikkelDato = valgtArtikkel.DatoPostet;
+                    Nyhet valgtArtikkel = (from nyheter in nyhetOrm.Nyhets
+                                        where nyheter.Id == id
+                                        select nyheter).SingleOrDefault();
 
 
                     return View(valgtArtikkel);
@@ -119,8 +115,8 @@ namespace NyheterApp.Controllers
             {
 
                 //2. LINQ-spørringen
-                List<Nyhet> NyhetsListe = (from Nyhet in DataAuthor.Nyhets
-                                           select Nyhet).ToList();
+                List<Nyhet> NyhetsListe = (from nyheter in DataAuthor.Nyhets
+                                           select nyheter).ToList();
 
                 //3. Sende resultat av LINQ-spørring til View
                 return View(NyhetsListe);
@@ -138,12 +134,9 @@ namespace NyheterApp.Controllers
             {
                 using (DataAuthorOrmDataContext nyhetOrm = new DataAuthorOrmDataContext())
                 {
-                    Nyhet valgtArtikkel = (from Nyhets in nyhetOrm.Nyhets
-                                           where Nyhets.Id == id
-                                           select Nyhets).SingleOrDefault();
-                    ViewBag.ValgtArtikkelId = valgtArtikkel.Id;
-                    ViewBag.ValgtArtikkelTittel = valgtArtikkel.Tittel;
-                    ViewBag.ValgtArtikkelTekst = valgtArtikkel.Tekst;
+                    Nyhet valgtArtikkel = (from nyheter in nyhetOrm.Nyhets
+                                           where nyheter.Id == id
+                                           select nyheter).SingleOrDefault();
                     return View(valgtArtikkel);
                 }
 
@@ -156,9 +149,9 @@ namespace NyheterApp.Controllers
       {
           using (DataAuthorOrmDataContext nyheterOrm = new DataAuthorOrmDataContext())
           {
-              Nyhet valgtNyhet = (from Nyhets in nyheterOrm.Nyhets
-                                  where Nyhets.Id == nyhet.Id
-                                  select Nyhets).SingleOrDefault();
+              Nyhet valgtNyhet = (from nyheter in nyheterOrm.Nyhets
+                                  where nyheter.Id == nyhet.Id
+                                  select nyheter).SingleOrDefault();
 
               valgtNyhet.Tittel = nyhet.Tittel;
               valgtNyhet.Id = nyhet.Id;
@@ -185,9 +178,9 @@ namespace NyheterApp.Controllers
         {
             using (DataAuthorOrmDataContext nyheterOrm = new DataAuthorOrmDataContext())
             {
-                Nyhet valgtNyhet = (from Nyhets in nyheterOrm.Nyhets
-                                    where Nyhets.Id == nyhet.Id
-                                    select Nyhets).SingleOrDefault();
+                Nyhet valgtNyhet = (from nyheter in nyheterOrm.Nyhets
+                                    where nyheter.Id == nyhet.Id
+                                    select nyheter).SingleOrDefault();
                 nyheterOrm.Nyhets.DeleteOnSubmit(valgtNyhet);
 
 

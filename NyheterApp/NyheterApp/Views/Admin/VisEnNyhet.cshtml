@@ -1,12 +1,14 @@
-﻿@{
+﻿@model NyheterApp.Models.Nyhet
+
+@{
     ViewBag.Title = "VisEnNyhet";
 }
 
 <article>
-    <h1>@ViewBag.ValgtArtikkelTittel </h1>
-    <p>(Publisert: @ViewBag.ValgtArtikkelDato )</p>
-    <img class="artikkelbilde" src="~/Content/Bilder/@ViewBag.ValgtArtikkelBilde" />
-    <p>@ViewBag.ValgtArtikkelTekst</p>   
+    <h1>@Model.Tittel </h1>
+    <p>(Publisert: @Model.DatoPostet )</p>
+    <img class="artikkelbilde" src="~/Content/Bilder/@Model.BildeSrc" />
+    <p>@Model.Tekst</p>   
 
 </article>
     
