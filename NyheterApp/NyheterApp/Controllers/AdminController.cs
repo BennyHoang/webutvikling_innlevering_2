@@ -141,6 +141,9 @@ namespace NyheterApp.Controllers
                     Nyhet valgtArtikkel = (from Nyhets in nyhetOrm.Nyhets
                                            where Nyhets.Id == id
                                            select Nyhets).SingleOrDefault();
+                    ViewBag.ValgtArtikkelId = valgtArtikkel.Id;
+                    ViewBag.ValgtArtikkelTittel = valgtArtikkel.Tittel;
+                    ViewBag.ValgtArtikkelTekst = valgtArtikkel.Tekst;
                     return View(valgtArtikkel);
                 }
 
@@ -161,9 +164,7 @@ namespace NyheterApp.Controllers
               valgtNyhet.Id = nyhet.Id;
               valgtNyhet.Tekst = nyhet.Tekst;
 
-              ViewBag.ValgtNyhetId = valgtNyhet.Id;
-              ViewBag.ValgtNyhetTittel = valgtNyhet.Tittel;
-              ViewBag.ValgtNyhetTekst = valgtNyhet.Tekst;
+
 
               nyheterOrm.SubmitChanges();
 
@@ -173,8 +174,16 @@ namespace NyheterApp.Controllers
 
           }
       }
-        public ActionResult SlettNyhet()
+        public ActionResult SlettNyhet(Nyhet nyhet)
         {
+            using (DataAuthorOrmDataContext nyheterOrm = new DataAuthorOrmDataContext())
+            {
+                Nyhet valgtNyhet = (from Nyhets in nyheterOrm.Nyhets
+                                    where Nyhets.Id == nyhet.Id
+                                    select Nyhets).SingleOrDefault();
+                nyheterOrm.Nyhets.DeleteOnSubmit(valgtNyhet);
+                nyheterOrm.SubmitChanges();
+            }
             return View();
         }
         //

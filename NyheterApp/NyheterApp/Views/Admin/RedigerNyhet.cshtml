@@ -4,15 +4,15 @@
 }
 
 <h2>Rediger Nyhet</h2>
-<label>Id @ViewBag.ValgtNyhetId</label>
+<label>Id @ViewBag.ValgtArtikkelId</label>
 @using (Html.BeginForm())
 {
     
     
     
               
-    @Html.TextBoxFor(Nyhet => Nyhet.Tittel, new { value = @ViewBag.ValgtNyhetId})
-    @Html.TextAreaFor(Nyhet => Nyhet.Tekst, new { value = @ViewBag.ValgtNyhetTekst})
+    @Html.TextBoxFor(Nyhet => Nyhet.Tittel)
+    @Html.TextAreaFor(Nyhet => Nyhet.Tekst)
 
     <input type="submit" value="Endre Tittel" />
 }
