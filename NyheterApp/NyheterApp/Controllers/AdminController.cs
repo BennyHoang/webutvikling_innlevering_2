@@ -65,27 +65,28 @@ namespace NyheterApp.Controllers
             }
         }
 
+        [HttpGet]
 
-
-
+        public ActionResult VisEnNyhet()
+        {
+            return View();
+        }
         //Vis en nyhet
 
-        public ActionResult VisEnNyhet() 
+        public ActionResult VisEnNyhet(int? id) 
         {
-
-            //LINQ
-            //1. koble til ORM (DB)
-            using (DataAuthorOrmDataContext DataAuthor = new DataAuthorOrmDataContext())
+            if (id != null)
             {
+                using (DataAuthorOrmDataContext nyhetOrm = new DataAuthorOrmDataContext())
+                {
+                    New valgtArtikkel = (from news in nyhetOrm.News
+                                        where news.Id == id
+                                        select news).SingleOrDefault();
+                    return View(valgtArtikkel);
+                }
 
-                //2. LINQ-spørringen
-                List<New> newsListe = (from New in DataAuthor.News
-                                       select New).ToList();
-
-                //3. Sende resultat av LINQ-spørring til View
-
-                return View(newsListe[1]);
             }
+            return View();  
         }
         //Rediger nyehter
         public ActionResult RedigerNyheter()
