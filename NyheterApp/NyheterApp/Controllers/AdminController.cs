@@ -67,7 +67,7 @@ namespace NyheterApp.Controllers
 
         [HttpGet]
 
-        public ActionResult VisEnNyhet()
+        public ActionResult VisEnNyhet(New nyhet)
         {
             return View();
         }

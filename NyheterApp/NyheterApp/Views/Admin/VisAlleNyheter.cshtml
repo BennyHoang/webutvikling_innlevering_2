@@ -16,6 +16,7 @@
             <article class="artikkelOversikt">
                 <h3>@news.Tittel</h3>
                 <img src="~/Content/Bilder/@news.BildeSrc" />
+                @Html.ActionLink("Les mer", "VisEnNyhet", new { id = @news.Id })
             </article>
         }
     }

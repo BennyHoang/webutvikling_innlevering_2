@@ -4,12 +4,20 @@
     ViewBag.Title = "VisEnNyhet";
 }
 
-<h2>VisEnNyhet</h2>
-
+<h2>Vis En Nyhet</h2>
+@if (Model != null && Model.Count() > 0)
+{
+    foreach (var news in Model)
+    {
         <article>
-            <h3>@News.Tittel</h3>
-            <p>@News.Tekst</p>
-
-            <img src="~/Content/Bilder/@News.BildeSrc" />
+            <h3>@news.Tittel</h3>
         </article>
+    }
+}
+else
+{
+    <p>no articles</p>
+}
+
+
     
