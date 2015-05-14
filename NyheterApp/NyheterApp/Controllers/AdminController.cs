@@ -89,13 +89,54 @@ namespace NyheterApp.Controllers
             }
             return View();  
         }
+
         //Rediger nyehter
-        public ActionResult RedigerNyheter()
+        public ActionResult RedigerNyheter(int? id)
         {
+            if (id != null)
+            {
+                using (DataAuthorOrmDataContext nyhetOrm = new DataAuthorOrmDataContext())
+                {
+                    Nyhet valgtArtikkel = (from Nyhets in nyhetOrm.Nyhets
+                                           where Nyhets.Id == id
+                                           select Nyhets).SingleOrDefault();
+                    return View(valgtArtikkel);
+                }
+
+            }
 
             return View();
         }
 
+        [HttpPost]
+
+        public ActionResult RedigerNyheter(Nyhet nyhet)
+        {
+            using (DataAuthorOrmDataContext nyheterOrm = new DataAuthorOrmDataContext())
+            {
+                Nyhet valgtArtikkel = (from Nyhets in nyheterOrm.Nyhets
+                                    where Nyhets.Id == Nyhets.Id
+                                    select Nyhets).SingleOrDefault();
+
+                valgtArtikkel.Tittel = nyhet.Tittel;
+                valgtArtikkel.Tekst = nyhet.Tekst;
+                nyheterOrm.SubmitChanges();
+
+                //return View(valgtBilde);
+                //URL redirecting
+                return RedirectToAction("RedigerNyheter");
+
+            }
+        }
+
+        public ActionResult RedigerNyhet()
+        {
+            return View();
+        }
+        public ActionResult SlettNyhet()
+        {
+            return View();
+        }
         //
         // GET: /Admin/
         public ActionResult Index()

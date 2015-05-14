@@ -8,22 +8,25 @@
 <h2>Rediger nyheter</h2>
 
 
-@using (Html.BeginForm())
+@if (Model != null && Model.Count() > 0)
 {
 
-    <table>
-
-        <tr>
-            <td>@Html.Label("idTxt", "Id")</td>
-            <td>@Html.TextBoxFor(x => x.Id, new { id = "id" })</td>
-        </tr>
-        <tr>
-            <td>@Html.Label("tittelTxt", "Tittel")</td>
-            <td>@Html.TextBoxFor(tittel => tittel.Tittel, new { id = "tittelTxt" })</td>
-        </tr>
-
-    </table>
-
-    <input type="submit" value="Rediger" />
-
+    foreach (var Nyhets in Model)
+    {
+        //Denne legger en url rundt hele nyhetsartikkelen, slik at den er klikkbar
+        <table>
+            <tr>
+                <td>@Nyhets.Id</td>
+                <td>@Nyhets.Tittel</td>
+                <td>@Nyhets.Tekst</td>
+                <td>@Html.ActionLink("Rediger", "RedigerNyhet", new { id = @Nyhets.Id }) <br />
+                    @Html.ActionLink("Slett", "SlettNyhet", new { id = @Nyhets.Id }) 
+                </td>
+            </tr>
+        </table>
+    }
+}
+else
+{
+    <p>Ingen nyhetsartikler er skrevet enda</p>
 }
