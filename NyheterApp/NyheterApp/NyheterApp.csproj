@@ -150,6 +150,8 @@
     <Content Include="Views\Admin\RedigerNyheter.cshtml" />
     <Content Include="Views\Admin\RedigerNyhet.cshtml" />
     <Content Include="Views\Admin\SlettNyhet.cshtml" />
+    <Content Include="Views\Admin\LogIn.cshtml" />
+    <Content Include="Views\Admin\LogOut.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

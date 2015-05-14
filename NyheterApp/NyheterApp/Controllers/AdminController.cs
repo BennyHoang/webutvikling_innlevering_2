@@ -199,7 +199,18 @@ namespace NyheterApp.Controllers
             return RedirectToAction("RedigerNyheter");
 
         }
-        //
+        //Her kommer biten som tar seg av innlogging
+
+        public ActionResult LogIn() {
+
+            return View();
+        }
+
+        public ActionResult LogOut() {
+
+            return View();
+        }
+
         // GET: /Admin/
         public ActionResult Index()
         {
