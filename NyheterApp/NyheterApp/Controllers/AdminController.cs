@@ -30,6 +30,7 @@ namespace NyheterApp.Controllers
 
                  using (DataAuthorOrmDataContext DataAuthor = new DataAuthorOrmDataContext())
                 {
+                    Nyhets.DatoPostet = DateTime.Now;
                     Nyhets.BildeSrc = bildenavn;
                     DataAuthor.Nyhets.InsertOnSubmit(Nyhets);
                     DataAuthor.SubmitChanges();
