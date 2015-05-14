@@ -91,7 +91,8 @@ namespace NyheterApp.Controllers
         }
 
         //Rediger nyehter
-     /*   public ActionResult RedigerNyheter(int? id)
+        /*
+       public ActionResult RedigerNyhet(int? id)
         {
             if (id != null)
             {
@@ -107,8 +108,7 @@ namespace NyheterApp.Controllers
 
             return View();
         }
-
-*/
+         */
        
 
       public ActionResult RedigerNyheter()
@@ -123,7 +123,7 @@ namespace NyheterApp.Controllers
                                            select Nyhet).ToList();
 
                 //3. Sende resultat av LINQ-spørring til View
-                return View();
+                return View(NyhetsListe);
             }
         }
 
@@ -132,10 +132,47 @@ namespace NyheterApp.Controllers
 
 
 
-        public ActionResult RedigerNyhet()
+      public ActionResult RedigerNyhet(int? id)
         {
+            if (id != null)
+            {
+                using (DataAuthorOrmDataContext nyhetOrm = new DataAuthorOrmDataContext())
+                {
+                    Nyhet valgtArtikkel = (from Nyhets in nyhetOrm.Nyhets
+                                           where Nyhets.Id == id
+                                           select Nyhets).SingleOrDefault();
+                    return View(valgtArtikkel);
+                }
+
+            }
             return View();
         }
+
+      [HttpPost]
+      public ActionResult RedigerNyhet(Nyhet nyhet)
+      {
+          using (DataAuthorOrmDataContext nyheterOrm = new DataAuthorOrmDataContext())
+          {
+              Nyhet valgtNyhet = (from Nyhets in nyheterOrm.Nyhets
+                                  where Nyhets.Id == nyhet.Id
+                                  select Nyhets).SingleOrDefault();
+
+              valgtNyhet.Tittel = nyhet.Tittel;
+              valgtNyhet.Id = nyhet.Id;
+              valgtNyhet.Tekst = nyhet.Tekst;
+
+              ViewBag.ValgtNyhetId = valgtNyhet.Id;
+              ViewBag.ValgtNyhetTittel = valgtNyhet.Tittel;
+              ViewBag.ValgtNyhetTekst = valgtNyhet.Tekst;
+
+              nyheterOrm.SubmitChanges();
+
+              //return View(valgtBilde);
+              //URL redirecting
+              return RedirectToAction("RedigerNyheter");
+
+          }
+      }
         public ActionResult SlettNyhet()
         {
             return View();

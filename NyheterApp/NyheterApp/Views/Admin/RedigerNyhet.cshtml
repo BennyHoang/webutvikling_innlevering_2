@@ -1,7 +1,18 @@
-﻿
+﻿@model NyheterApp.Models.Nyhet
 @{
     ViewBag.Title = "RedigerNyhet";
 }
 
-<h2>RedigerNyhet</h2>
+<h2>Rediger Nyhet</h2>
+<label>Id @ViewBag.ValgtNyhetId</label>
+@using (Html.BeginForm())
+{
+    
+    
+    
+              
+    @Html.TextBoxFor(Nyhet => Nyhet.Tittel, new { value = @ViewBag.ValgtNyhetId})
+    @Html.TextAreaFor(Nyhet => Nyhet.Tekst, new { value = @ViewBag.ValgtNyhetTekst})
 
+    <input type="submit" value="Endre Tittel" />
+}
