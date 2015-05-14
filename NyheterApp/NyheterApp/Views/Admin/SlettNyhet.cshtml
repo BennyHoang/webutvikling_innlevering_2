@@ -1,19 +1,37 @@
 ﻿@model NyheterApp.Models.Nyhet
 
 @{
-    ViewBag.Title = "SlettNyhet";
+    ViewBag.Title = "Slett nyhet";
 }
 
 <h2>SlettNyhet</h2>
+
+
+
 
 
 @using (Html.BeginForm())
 {
 
     <table>
-       
+       <tr>
+           <td>Id</td>
+           <td>@Model.Id</td>
+       </tr>
+        <tr>
+            <td>Tittel</td>
+            <td>@Model.Tittel</td>
+        </tr>
+        <tr>
+            <td>Dato Postet</td>
+            <td>@Model.DatoPostet</td>
+        </tr>
+
     </table>
 
     <input type="submit" value="Slett" />
 
 }
+
+
+

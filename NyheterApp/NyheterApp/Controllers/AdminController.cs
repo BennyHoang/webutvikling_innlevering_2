@@ -167,12 +167,28 @@ namespace NyheterApp.Controllers
 
           }
       }
-        [HttpGet]
-        public ActionResult SlettNyhet() {
 
+        //Denne er for å vise infoen i slettnyhet før submit klikkes
+
+        [HttpGet]
+        public ActionResult SlettNyhet(int? id)
+        {
+            if (id != null)
+            {
+                using (DataAuthorOrmDataContext nyhetOrm = new DataAuthorOrmDataContext())
+                {
+                    Nyhet valgtArtikkel = (from nyheter in nyhetOrm.Nyhets
+                                           where nyheter.Id == id
+                                           select nyheter).SingleOrDefault();
+                    return View(valgtArtikkel);
+                }
+
+            }
             return View();
         }
+      
 
+         
         [HttpPost]
         public ActionResult SlettNyhet(Nyhet nyhet)
         {
