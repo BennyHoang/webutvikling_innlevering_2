@@ -1,7 +1,18 @@
-﻿
+﻿@model IEnumerable<NyheterApp.Models.New>
+
 @{
     ViewBag.Title = "VisEnNyhet";
 }
 
 <h2>VisEnNyhet</h2>
 
+
+
+
+        <article>
+            <h3>@News.Tittel</h3>
+            <p>@News.Tekst</p>
+
+            <img src="~/Content/Bilder/@News.BildeSrc" />
+        </article>
+    

@@ -5,7 +5,6 @@ using System.Web;
 using System.Web.Mvc;
 using NyheterApp.Models;
 using System.IO;
-
 namespace NyheterApp.Controllers
 {
     public class AdminController : Controller
@@ -46,39 +45,7 @@ namespace NyheterApp.Controllers
             return View();
         }
 
-       /* [HttpPost]
-        public ActionResult LagNyNyhet(new bilde, HttpPostedFileBase bildefil)
-        {
-            try
-            {
-                //Lagre bildefil
-                String bildenavn = Path.GetFileName(bildefil.FileName);
-                String bildefilsti = Path.Combine(Server.MapPath("~/Content/Bilder"), bildenavn);
-                bildefil.SaveAs(bildefilsti);
-
-                //Lagre ny bildeentitet
-                using (BilderOrmDataContext bilderOrm = new BilderOrmDataContext())
-                {
-                    bilde.BildeSrc = bildenavn;
-
-                    bilderOrm.Bildes.InsertOnSubmit(bilde);
-                    bilderOrm.SubmitChanges();
-                }
-
-                ViewBag.LastetOpp = true;
-
-            }
-            catch (Exception ex)
-            {
-                ViewBag.LastetOpp = false;
-                ViewBag.Feilmelding = ex.Message;
-            }
-
-
-            return View();
-        }
-        */
-
+     
 
         //Vis nyheter   
         public ActionResult VisAlleNyheter()
@@ -99,16 +66,26 @@ namespace NyheterApp.Controllers
         }
 
 
-       
-   
-    
 
 
         //Vis en nyhet
 
         public ActionResult VisEnNyhet() 
         {
-            return View();
+
+            //LINQ
+            //1. koble til ORM (DB)
+            using (DataAuthorOrmDataContext DataAuthor = new DataAuthorOrmDataContext())
+            {
+
+                //2. LINQ-spørringen
+                List<New> newsListe = (from New in DataAuthor.News
+                                       select New).ToList();
+
+                //3. Sende resultat av LINQ-spørring til View
+
+                return View(newsListe[1]);
+            }
         }
         //Rediger nyehter
         public ActionResult RedigerNyheter()

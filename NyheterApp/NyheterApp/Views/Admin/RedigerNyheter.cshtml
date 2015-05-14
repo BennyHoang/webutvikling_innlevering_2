@@ -1,7 +1,29 @@
-﻿
+﻿@model IEnumerable<NyheterApp.Models.New>
+
+
 @{
     ViewBag.Title = "RedigerNyheter";
 }
 
-<h2>RedigerNyheter</h2>
+<h2>Rediger nyheter</h2>
 
+
+@using (Html.BeginForm())
+{
+
+    <table>
+
+        <tr>
+            <td>@Html.Label("idTxt", "Id")</td>
+            <td>@Html.TextBoxFor(x => x.Id, new { id = "id" })</td>
+        </tr>
+        <tr>
+            <td>@Html.Label("tittelTxt", "Tittel")</td>
+            <td>@Html.TextBoxFor(tittel => tittel.Tittel, new { id = "tittelTxt" })</td>
+        </tr>
+
+    </table>
+
+    <input type="submit" value="Rediger" />
+
+}
