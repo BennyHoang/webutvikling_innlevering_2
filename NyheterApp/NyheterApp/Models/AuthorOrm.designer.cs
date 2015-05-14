@@ -99,7 +99,7 @@ namespace NyheterApp.Models
 		
 		private string _Mobil;
 		
-		private EntitySet<Nyhet> _News;
+		private EntitySet<Nyhet> _Nyhets;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -117,7 +117,7 @@ namespace NyheterApp.Models
 		
 		public Author()
 		{
-			this._News = new EntitySet<Nyhet>(new Action<Nyhet>(this.attach_News), new Action<Nyhet>(this.detach_News));
+			this._Nyhets = new EntitySet<Nyhet>(new Action<Nyhet>(this.attach_Nyhets), new Action<Nyhet>(this.detach_Nyhets));
 			OnCreated();
 		}
 		
@@ -201,16 +201,16 @@ namespace NyheterApp.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Author_New", Storage="_News", ThisKey="Id", OtherKey="AuthorID")]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Author_New", Storage="_Nyhets", ThisKey="Id", OtherKey="AuthorID")]
 		public EntitySet<Nyhet> Nyhets
 		{
 			get
 			{
-				return this._News;
+				return this._Nyhets;
 			}
 			set
 			{
-				this._News.Assign(value);
+				this._Nyhets.Assign(value);
 			}
 		}
 		
@@ -234,13 +234,13 @@ namespace NyheterApp.Models
 			}
 		}
 		
-		private void attach_News(Nyhet entity)
+		private void attach_Nyhets(Nyhet entity)
 		{
 			this.SendPropertyChanging();
 			entity.Author = this;
 		}
 		
-		private void detach_News(Nyhet entity)
+		private void detach_Nyhets(Nyhet entity)
 		{
 			this.SendPropertyChanging();
 			entity.Author = null;

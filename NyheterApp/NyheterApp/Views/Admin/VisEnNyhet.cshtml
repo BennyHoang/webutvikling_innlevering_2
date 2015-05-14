@@ -2,9 +2,11 @@
     ViewBag.Title = "VisEnNyhet";
 }
 
-<h2>Vis En Nyhet</h2>
+<article>
+    <h1>@ViewBag.ValgtArtikkelTittel </h1>
+    <p>(Publisert: @ViewBag.ValgtArtikkelDato )</p>
+    <img class="artikkelbilde" src="~/Content/Bilder/@ViewBag.ValgtArtikkelBilde" />
+    <p>@ViewBag.ValgtArtikkelTekst</p>   
 
-@ViewBag.artikkel
-
-
+</article>
     

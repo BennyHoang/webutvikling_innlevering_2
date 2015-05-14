@@ -2,23 +2,23 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="DataAuthorOrm">
   <DataContextMoniker Name="/DataAuthorOrmDataContext" />
   <nestedChildShapes>
-    <classShape Id="1471289b-09ad-42f5-84d1-05c0c78780f6" absoluteBounds="4.25, 1.125, 2, 1.5785953776041666">
+    <classShape Id="b522616a-2c99-45ec-96ad-b4383b2f7e58" absoluteBounds="1.125, 0.875, 2, 1.5785953776041666">
       <DataClassMoniker Name="/DataAuthorOrmDataContext/Author" />
       <nestedChildShapes>
-        <elementListCompartment Id="4768e36e-b397-4cfd-b0b1-0670dacebc5a" absoluteBounds="4.2650000000000006, 1.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="f00ef4a7-79a7-43de-970a-80b359b9dbec" absoluteBounds="1.1400000000000001, 1.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="89ac261e-c0d2-4896-83e4-3e062e675d70" absoluteBounds="0.5, 0.875, 2, 1.9631982421875">
+    <classShape Id="b8b33dc0-50e1-4577-b7cf-f16d7bc86c21" absoluteBounds="3.875, 0.625, 2, 1.9631982421875">
       <DataClassMoniker Name="/DataAuthorOrmDataContext/Nyhet" />
       <nestedChildShapes>
-        <elementListCompartment Id="5af5b345-55e3-4afc-850e-685b29cc6640" absoluteBounds="0.51500000000000012, 1.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="b7107827-0b77-420f-aeb9-c7a5c19ae943" absoluteBounds="3.89, 1.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(4.25 : 1.91429768880208); (2.5 : 1.91429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(3.125 : 1.66429768880208); (3.875 : 1.66429768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DataAuthorOrmDataContext/Author/Author_New" />
       <nodes>
-        <classShapeMoniker Id="1471289b-09ad-42f5-84d1-05c0c78780f6" />
-        <classShapeMoniker Id="89ac261e-c0d2-4896-83e4-3e062e675d70" />
+        <classShapeMoniker Id="b522616a-2c99-45ec-96ad-b4383b2f7e58" />
+        <classShapeMoniker Id="b8b33dc0-50e1-4577-b7cf-f16d7bc86c21" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

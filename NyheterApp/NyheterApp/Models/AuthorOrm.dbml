@@ -6,7 +6,7 @@
       <Column Name="Fornavn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Etternavn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Mobil" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Association Name="Author_New" Member="Nyhets" Storage="_News" ThisKey="Id" OtherKey="AuthorID" Type="Nyhet" />
+      <Association Name="Author_New" Member="Nyhets" ThisKey="Id" OtherKey="AuthorID" Type="Nyhet" />
     </Type>
   </Table>
   <Table Name="dbo.News" Member="Nyhets">

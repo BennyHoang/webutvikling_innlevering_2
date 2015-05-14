@@ -76,7 +76,12 @@ namespace NyheterApp.Controllers
                     Nyhet valgtArtikkel = (from Nyhets in nyhetOrm.Nyhets
                                         where Nyhets.Id == id
                                         select Nyhets).SingleOrDefault();
-                    ViewBag.Artikkel = valgtArtikkel.Tittel;
+                    ViewBag.ValgtArtikkelTittel = valgtArtikkel.Tittel;
+                    ViewBag.ValgtArtikkelBilde = valgtArtikkel.BildeSrc;
+                    ViewBag.ValgtArtikkelTekst = valgtArtikkel.Tekst;
+                    ViewBag.ValgtArtikkelDato = valgtArtikkel.DatoPostet;
+
+
                     return View(valgtArtikkel);
                 }
 
