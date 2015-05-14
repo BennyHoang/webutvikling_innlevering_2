@@ -91,7 +91,7 @@ namespace NyheterApp.Controllers
         }
 
         //Rediger nyehter
-        public ActionResult RedigerNyheter(int? id)
+     /*   public ActionResult RedigerNyheter(int? id)
         {
             if (id != null)
             {
@@ -108,26 +108,29 @@ namespace NyheterApp.Controllers
             return View();
         }
 
-        [HttpPost]
+*/
+       
 
-        public ActionResult RedigerNyheter(Nyhet nyhet)
+      public ActionResult RedigerNyheter()
         {
-            using (DataAuthorOrmDataContext nyheterOrm = new DataAuthorOrmDataContext())
+            //LINQ
+            //1. koble til ORM (DB)
+            using (DataAuthorOrmDataContext DataAuthor = new DataAuthorOrmDataContext())
             {
-                Nyhet valgtArtikkel = (from Nyhets in nyheterOrm.Nyhets
-                                    where Nyhets.Id == Nyhets.Id
-                                    select Nyhets).SingleOrDefault();
 
-                valgtArtikkel.Tittel = nyhet.Tittel;
-                valgtArtikkel.Tekst = nyhet.Tekst;
-                nyheterOrm.SubmitChanges();
+                //2. LINQ-spørringen
+                List<Nyhet> NyhetsListe = (from Nyhet in DataAuthor.Nyhets
+                                           select Nyhet).ToList();
 
-                //return View(valgtBilde);
-                //URL redirecting
-                return RedirectToAction("RedigerNyheter");
-
+                //3. Sende resultat av LINQ-spørring til View
+                return View();
             }
         }
+
+
+
+
+
 
         public ActionResult RedigerNyhet()
         {
