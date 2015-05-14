@@ -65,12 +65,6 @@ namespace NyheterApp.Controllers
             }
         }
 
-        [HttpGet]
-
-        public ActionResult VisEnNyhet(Nyhet nyhet)
-        {
-            return View();
-        }
         //Vis en nyhet
 
         public ActionResult VisEnNyhet(int? id) 
@@ -82,6 +76,7 @@ namespace NyheterApp.Controllers
                     Nyhet valgtArtikkel = (from Nyhets in nyhetOrm.Nyhets
                                         where Nyhets.Id == id
                                         select Nyhets).SingleOrDefault();
+                    ViewBag.Artikkel = valgtArtikkel.Tittel;
                     return View(valgtArtikkel);
                 }
 
