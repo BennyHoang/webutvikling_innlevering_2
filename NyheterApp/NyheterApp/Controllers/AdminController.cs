@@ -174,6 +174,13 @@ namespace NyheterApp.Controllers
 
           }
       }
+        [HttpGet]
+        public ActionResult SlettNyhet() {
+
+            return View();
+        }
+
+        [HttpPost]
         public ActionResult SlettNyhet(Nyhet nyhet)
         {
             using (DataAuthorOrmDataContext nyheterOrm = new DataAuthorOrmDataContext())
@@ -182,9 +189,15 @@ namespace NyheterApp.Controllers
                                     where Nyhets.Id == nyhet.Id
                                     select Nyhets).SingleOrDefault();
                 nyheterOrm.Nyhets.DeleteOnSubmit(valgtNyhet);
+
+
                 nyheterOrm.SubmitChanges();
+
+                //URL redirecting
+
             }
-            return View();
+            return RedirectToAction("RedigerNyheter");
+
         }
         //
         // GET: /Admin/
