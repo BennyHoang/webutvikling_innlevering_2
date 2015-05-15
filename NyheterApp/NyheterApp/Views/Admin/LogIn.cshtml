@@ -1,7 +1,21 @@
-﻿
+﻿@model NyheterApp.Models.Author
 @{
-    ViewBag.Title = "LogIn";
+    ViewBag.Title = "Logg inn";
 }
 
 <h2>LogIn</h2>
 
+
+@using (Html.BeginForm())
+{
+
+
+    <label>Brukernavn:</label>
+    @Html.TextBoxFor(bruker => bruker.Brukernavn) <br /><br />
+    <label>Passord:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </label>
+    @Html.TextBoxFor(bruker => bruker.Passord) <br />
+    <input type="submit" value="Logg inn" />
+}
+
+<p>@ViewBag.innlogging</p>
+<p>@ViewBag.feilKobleTilDatabaseInnlogging</p>

@@ -30,12 +30,12 @@ namespace NyheterApp.Models
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertAuthor(Author instance);
-    partial void UpdateAuthor(Author instance);
-    partial void DeleteAuthor(Author instance);
     partial void InsertNyhet(Nyhet instance);
     partial void UpdateNyhet(Nyhet instance);
     partial void DeleteNyhet(Nyhet instance);
+    partial void InsertAuthor(Author instance);
+    partial void UpdateAuthor(Author instance);
+    partial void DeleteAuthor(Author instance);
     #endregion
 		
 		public DataAuthorOrmDataContext() : 
@@ -68,14 +68,6 @@ namespace NyheterApp.Models
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Author> Authors
-		{
-			get
-			{
-				return this.GetTable<Author>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Nyhet> Nyhets
 		{
 			get
@@ -83,167 +75,13 @@ namespace NyheterApp.Models
 				return this.GetTable<Nyhet>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Author")]
-	public partial class Author : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _Id;
-		
-		private string _Fornavn;
-		
-		private string _Etternavn;
-		
-		private string _Mobil;
-		
-		private EntitySet<Nyhet> _Nyhets;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnFornavnChanging(string value);
-    partial void OnFornavnChanged();
-    partial void OnEtternavnChanging(string value);
-    partial void OnEtternavnChanged();
-    partial void OnMobilChanging(string value);
-    partial void OnMobilChanged();
-    #endregion
-		
-		public Author()
-		{
-			this._Nyhets = new EntitySet<Nyhet>(new Action<Nyhet>(this.attach_Nyhets), new Action<Nyhet>(this.detach_Nyhets));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id
+		public System.Data.Linq.Table<Author> Authors
 		{
 			get
 			{
-				return this._Id;
+				return this.GetTable<Author>();
 			}
-			set
-			{
-				if ((this._Id != value))
-				{
-					this.OnIdChanging(value);
-					this.SendPropertyChanging();
-					this._Id = value;
-					this.SendPropertyChanged("Id");
-					this.OnIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fornavn", DbType="NVarChar(50)")]
-		public string Fornavn
-		{
-			get
-			{
-				return this._Fornavn;
-			}
-			set
-			{
-				if ((this._Fornavn != value))
-				{
-					this.OnFornavnChanging(value);
-					this.SendPropertyChanging();
-					this._Fornavn = value;
-					this.SendPropertyChanged("Fornavn");
-					this.OnFornavnChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Etternavn", DbType="NVarChar(50)")]
-		public string Etternavn
-		{
-			get
-			{
-				return this._Etternavn;
-			}
-			set
-			{
-				if ((this._Etternavn != value))
-				{
-					this.OnEtternavnChanging(value);
-					this.SendPropertyChanging();
-					this._Etternavn = value;
-					this.SendPropertyChanged("Etternavn");
-					this.OnEtternavnChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mobil", DbType="NChar(10)")]
-		public string Mobil
-		{
-			get
-			{
-				return this._Mobil;
-			}
-			set
-			{
-				if ((this._Mobil != value))
-				{
-					this.OnMobilChanging(value);
-					this.SendPropertyChanging();
-					this._Mobil = value;
-					this.SendPropertyChanged("Mobil");
-					this.OnMobilChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Author_New", Storage="_Nyhets", ThisKey="Id", OtherKey="AuthorID")]
-		public EntitySet<Nyhet> Nyhets
-		{
-			get
-			{
-				return this._Nyhets;
-			}
-			set
-			{
-				this._Nyhets.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Nyhets(Nyhet entity)
-		{
-			this.SendPropertyChanging();
-			entity.Author = this;
-		}
-		
-		private void detach_Nyhets(Nyhet entity)
-		{
-			this.SendPropertyChanging();
-			entity.Author = null;
 		}
 	}
 	
@@ -415,7 +253,7 @@ namespace NyheterApp.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Author_New", Storage="_Author", ThisKey="AuthorID", OtherKey="Id", IsForeignKey=true)]
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Author_Nyhet", Storage="_Author", ThisKey="AuthorID", OtherKey="Id", IsForeignKey=true)]
 		public Author Author
 		{
 			get
@@ -467,6 +305,216 @@ namespace NyheterApp.Models
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Author")]
+	public partial class Author : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private string _Fornavn;
+		
+		private string _Etternavn;
+		
+		private string _Mobil;
+		
+		private string _Brukernavn;
+		
+		private string _Passord;
+		
+		private EntitySet<Nyhet> _Nyhets;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnFornavnChanging(string value);
+    partial void OnFornavnChanged();
+    partial void OnEtternavnChanging(string value);
+    partial void OnEtternavnChanged();
+    partial void OnMobilChanging(string value);
+    partial void OnMobilChanged();
+    partial void OnBrukernavnChanging(string value);
+    partial void OnBrukernavnChanged();
+    partial void OnPassordChanging(string value);
+    partial void OnPassordChanged();
+    #endregion
+		
+		public Author()
+		{
+			this._Nyhets = new EntitySet<Nyhet>(new Action<Nyhet>(this.attach_Nyhets), new Action<Nyhet>(this.detach_Nyhets));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Fornavn", DbType="NVarChar(50)")]
+		public string Fornavn
+		{
+			get
+			{
+				return this._Fornavn;
+			}
+			set
+			{
+				if ((this._Fornavn != value))
+				{
+					this.OnFornavnChanging(value);
+					this.SendPropertyChanging();
+					this._Fornavn = value;
+					this.SendPropertyChanged("Fornavn");
+					this.OnFornavnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Etternavn", DbType="NVarChar(50)")]
+		public string Etternavn
+		{
+			get
+			{
+				return this._Etternavn;
+			}
+			set
+			{
+				if ((this._Etternavn != value))
+				{
+					this.OnEtternavnChanging(value);
+					this.SendPropertyChanging();
+					this._Etternavn = value;
+					this.SendPropertyChanged("Etternavn");
+					this.OnEtternavnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mobil", DbType="NChar(10)")]
+		public string Mobil
+		{
+			get
+			{
+				return this._Mobil;
+			}
+			set
+			{
+				if ((this._Mobil != value))
+				{
+					this.OnMobilChanging(value);
+					this.SendPropertyChanging();
+					this._Mobil = value;
+					this.SendPropertyChanged("Mobil");
+					this.OnMobilChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Brukernavn", DbType="NVarChar(50)")]
+		public string Brukernavn
+		{
+			get
+			{
+				return this._Brukernavn;
+			}
+			set
+			{
+				if ((this._Brukernavn != value))
+				{
+					this.OnBrukernavnChanging(value);
+					this.SendPropertyChanging();
+					this._Brukernavn = value;
+					this.SendPropertyChanged("Brukernavn");
+					this.OnBrukernavnChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Passord", DbType="NVarChar(50)")]
+		public string Passord
+		{
+			get
+			{
+				return this._Passord;
+			}
+			set
+			{
+				if ((this._Passord != value))
+				{
+					this.OnPassordChanging(value);
+					this.SendPropertyChanging();
+					this._Passord = value;
+					this.SendPropertyChanged("Passord");
+					this.OnPassordChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Author_Nyhet", Storage="_Nyhets", ThisKey="Id", OtherKey="AuthorID")]
+		public EntitySet<Nyhet> Nyhets
+		{
+			get
+			{
+				return this._Nyhets;
+			}
+			set
+			{
+				this._Nyhets.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Nyhets(Nyhet entity)
+		{
+			this.SendPropertyChanging();
+			entity.Author = this;
+		}
+		
+		private void detach_Nyhets(Nyhet entity)
+		{
+			this.SendPropertyChanging();
+			entity.Author = null;
 		}
 	}
 }

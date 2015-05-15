@@ -1,14 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="AuthorDB" Class="DataAuthorOrmDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\AuthorDB.mdf;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="AuthorDBConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.Author" Member="Authors">
-    <Type Name="Author">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Fornavn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Etternavn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="Mobil" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Association Name="Author_New" Member="Nyhets" ThisKey="Id" OtherKey="AuthorID" Type="Nyhet" />
-    </Type>
-  </Table>
   <Table Name="dbo.News" Member="Nyhets">
     <Type Name="Nyhet">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -17,7 +8,18 @@
       <Column Name="DatoPostet" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="BildeSrc" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="AuthorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="Author_New" Member="Author" ThisKey="AuthorID" OtherKey="Id" Type="Author" IsForeignKey="true" />
+      <Association Name="Author_Nyhet" Member="Author" ThisKey="AuthorID" OtherKey="Id" Type="Author" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Author" Member="Authors">
+    <Type Name="Author">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Fornavn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Etternavn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Mobil" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Brukernavn" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Passord" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="Author_Nyhet" Member="Nyhets" ThisKey="Id" OtherKey="AuthorID" Type="Nyhet" />
     </Type>
   </Table>
 </Database>
