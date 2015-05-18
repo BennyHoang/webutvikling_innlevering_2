@@ -10,24 +10,26 @@
 
 @if (Model != null && Model.Count() > 0)
 {
-    <tr>
-        <th> ID </th>
-        <th> Tittel </th>
-        <th> Tekst </th>
-    </tr>
-    foreach (var Nyhets in Model)
-    {
-        <table id="rediger-nyheter-table">
-            <tr>
-                <td id="nyhets-id">@Nyhets.Id</td>
-                <td id="nyhets-tittel">@Nyhets.Tittel</td>
-                <td id="nyhets-tekst">@Nyhets.Tekst</td>
-                <td id="nyhets-rediger">@Html.ActionLink("Rediger", "RedigerNyhet", new { id = @Nyhets.Id }) <br />
-                    @Html.ActionLink("Slett", "SlettNyhet", new { id = @Nyhets.Id }) 
+    <table id="rediger-nyheter-table">
+        <tr>
+            <th class="nyhets-id"> ID </th>
+            <th class="nyhets-tittel"> Tittel </th>
+            <th class="nyhets-tekst"> Tekst </th>
+        </tr>
+        @foreach (var Nyhets in Model)
+        {
+
+            <tr id="rediger-nyheter-table-content">
+                <td class="nyhets-id">@Nyhets.Id</td>
+                <td class="nyhets-tittel">@Nyhets.Tittel</td>
+                <td class="nyhets-tekst">@Nyhets.Tekst</td>
+                <td class="nyhets-rediger">
+                    <img src="~/Content/Assets/ico-edit.png"> @Html.ActionLink("Rediger", "RedigerNyhet", new { id = @Nyhets.Id }) <br />
+                    <img src="~/Content/Assets/ico-delete.png">@Html.ActionLink("Slett", "SlettNyhet", new { id = @Nyhets.Id }) <br />
                 </td>
             </tr>
-        </table>
-    }
+        }
+    </table>
 }
 else
 {

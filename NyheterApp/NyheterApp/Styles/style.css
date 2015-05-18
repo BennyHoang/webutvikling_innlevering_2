@@ -81,15 +81,24 @@ height:300px;
 
 #rediger-nyheter-table{
     width:100%;
+    border-collapse: collapse;
+    
 }
 
-#rediger-nyheter-table:nth-child(odd){
-    background-color:grey;
+#rediger-nyheter-table td, #rediger-nyheter-table th{
+    padding: 0.5rem;
 }
 
-#nyhets-id{
+#rediger-nyheter-table-content:nth-child(odd){
+    background-color:#D3D3D3;
+}
+
+.nyhets-id{
     width:3%;
 }
-#nyhets-tittel{
+.nyhets-tittel{
     width:15%;
+}
+.nyhets-tekst{
+    width:70%;
 }
