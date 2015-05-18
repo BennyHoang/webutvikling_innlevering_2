@@ -78,3 +78,18 @@ margin-right:20px;
 width:400px;
 height:300px;
 }
+
+#rediger-nyheter-table{
+    width:100%;
+}
+
+#rediger-nyheter-table:nth-child(odd){
+    background-color:grey;
+}
+
+#nyhets-id{
+    width:3%;
+}
+#nyhets-tittel{
+    width:15%;
+}

@@ -10,15 +10,19 @@
 
 @if (Model != null && Model.Count() > 0)
 {
-
+    <tr>
+        <th> ID </th>
+        <th> Tittel </th>
+        <th> Tekst </th>
+    </tr>
     foreach (var Nyhets in Model)
     {
-        <table>
+        <table id="rediger-nyheter-table">
             <tr>
-                <td>@Nyhets.Id</td>
-                <td>@Nyhets.Tittel</td>
-                <td>@Nyhets.Tekst</td>
-                <td>@Html.ActionLink("Rediger", "RedigerNyhet", new { id = @Nyhets.Id }) <br />
+                <td id="nyhets-id">@Nyhets.Id</td>
+                <td id="nyhets-tittel">@Nyhets.Tittel</td>
+                <td id="nyhets-tekst">@Nyhets.Tekst</td>
+                <td id="nyhets-rediger">@Html.ActionLink("Rediger", "RedigerNyhet", new { id = @Nyhets.Id }) <br />
                     @Html.ActionLink("Slett", "SlettNyhet", new { id = @Nyhets.Id }) 
                 </td>
             </tr>
