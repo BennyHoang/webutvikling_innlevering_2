@@ -13,7 +13,7 @@
     <label>Brukernavn:</label>
     @Html.TextBoxFor(bruker => bruker.Brukernavn) <br /><br />
     <label>Passord:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </label>
-    @Html.TextBoxFor(bruker => bruker.Passord) <br />
+    @Html.PasswordFor(bruker => bruker.Passord) <br />
     <input type="submit" value="Logg inn" />
 }
 
