@@ -1,4 +1,4 @@
-﻿@model NyheterApp.Models.Author
+﻿@model NyheterApp.Models.Forfatter
 @{
     ViewBag.Title = "Logg inn";
 }
@@ -8,10 +8,8 @@
 
 @using (Html.BeginForm())
 {
-
-
     <label>Brukernavn:</label>
-    @Html.TextBoxFor(bruker => bruker.Brukernavn) <br /><br />
+    @Html.TextBoxFor(bruker => bruker.Brukernavn)<br />
     <label>Passord:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  </label>
     @Html.PasswordFor(bruker => bruker.Passord) <br />
     <input type="submit" value="Logg inn" />

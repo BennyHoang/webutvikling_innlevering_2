@@ -14,22 +14,17 @@ namespace NyheterApp.Controllers
         [HttpGet]
         public ActionResult LagNyNyhet()
         {
-
             //denne sjekker om bruker er innlogget
-
             if (Session["innlogget"] != null)
             {
                 ViewBag.Brukernavn = (string)Session["innlogget"];
-
-
                 return View();
             }
             //Dersom bruker ikke er innlogget må han logge inn 
             else
             {
                 return RedirectToAction("LogIn");
-             }
-
+            }
         }
 
         [HttpPost]
@@ -43,12 +38,12 @@ namespace NyheterApp.Controllers
                 String bildefilsti = Path.Combine(Server.MapPath("~/Content/Bilder"), bildenavn);
                 bildefil.SaveAs(bildefilsti);
 
-                using (NyhetOrmDbDataContext DataAuthor = new NyhetOrmDbDataContext())
+                using (NyhetOrmDbDataContext nyhetOrm = new NyhetOrmDbDataContext())
                 {
                     Nyhets.DatoPostet = DateTime.Now;
                     Nyhets.BildeSrc = bildenavn;
-                    DataAuthor.Nyhets.InsertOnSubmit(Nyhets);
-                    DataAuthor.SubmitChanges();
+                    nyhetOrm.Nyhets.InsertOnSubmit(Nyhets);
+                    nyhetOrm.SubmitChanges();
                 }
                 ViewBag.LastetOpp = true;
 
@@ -68,11 +63,11 @@ namespace NyheterApp.Controllers
         {
             //LINQ
             //1. koble til ORM (DB)
-            using (NyhetOrmDbDataContext DataAuthor = new NyhetOrmDbDataContext())
+            using (NyhetOrmDbDataContext nyhetOrm = new NyhetOrmDbDataContext())
             {
 
                 //2. LINQ-spørringen
-                List<Nyhet> NyhetsListe = (from nyheter in DataAuthor.Nyhets
+                List<Nyhet> NyhetsListe = (from nyheter in nyhetOrm.Nyhets
                                            select nyheter).ToList();
 
                 //3. Sende resultat av LINQ-spørring til View
@@ -113,11 +108,11 @@ namespace NyheterApp.Controllers
                 ViewBag.Brukernavn = (string)Session["innlogget"];
                 //LINQ
                 //1. koble til ORM (DB)
-                using (NyhetOrmDbDataContext DataAuthor = new NyhetOrmDbDataContext())
+                using (NyhetOrmDbDataContext nyhetOrm = new NyhetOrmDbDataContext())
                 {
 
                     //2. LINQ-spørringen
-                    List<Nyhet> NyhetsListe = (from nyheter in DataAuthor.Nyhets
+                    List<Nyhet> NyhetsListe = (from nyheter in nyhetOrm.Nyhets
                                                select nyheter).ToList();
                     //3. Sende resultat av LINQ-spørring til View
                     return View(NyhetsListe);
@@ -230,8 +225,8 @@ namespace NyheterApp.Controllers
                 using (NyhetOrmDbDataContext brukerOrm = new NyhetOrmDbDataContext())
                 {
 
-                    List<Forfatter> brukerData = (from forfatter in brukerOrm.Forfatters
-                                               select forfatter).ToList();
+                    List<Forfatter> brukerData = (from forfattere in brukerOrm.Forfatters
+                                               select forfattere).ToList();
 
                     String brukernavnPost = bruker.Brukernavn;
                     String passordPost = bruker.Passord;
