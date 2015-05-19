@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="NyhetOrmDb">
+  <DataContextMoniker Name="/NyhetOrmDbDataContext" />
+  <nestedChildShapes>
+    <classShape Id="fb648e17-4922-42dd-bbad-ded06bf2dea7" absoluteBounds="0.75, 0.875, 2, 1.9631982421875">
+      <DataClassMoniker Name="/NyhetOrmDbDataContext/Forfatter" />
+      <nestedChildShapes>
+        <elementListCompartment Id="e34c7d6a-4104-4650-aa0c-d291c4d2d8e1" absoluteBounds="0.765, 1.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="8b685267-64f0-4637-976b-4fac2ee0f4dd" absoluteBounds="3.5, 0.875, 2, 1.9631982421875">
+      <DataClassMoniker Name="/NyhetOrmDbDataContext/Nyhet" />
+      <nestedChildShapes>
+        <elementListCompartment Id="cdb3bd4e-63ca-4c01-a964-4fe59cf18c9e" absoluteBounds="3.515, 1.335, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(2.75 : 1.85659912109375); (3.5 : 1.85659912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/NyhetOrmDbDataContext/Forfatter/Forfatter_Nyhet" />
+      <nodes>
+        <classShapeMoniker Id="fb648e17-4922-42dd-bbad-ded06bf2dea7" />
+        <classShapeMoniker Id="8b685267-64f0-4637-976b-4fac2ee0f4dd" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

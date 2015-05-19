@@ -43,7 +43,7 @@ namespace NyheterApp.Controllers
                 String bildefilsti = Path.Combine(Server.MapPath("~/Content/Bilder"), bildenavn);
                 bildefil.SaveAs(bildefilsti);
 
-                using (DataAuthorOrmDataContext DataAuthor = new DataAuthorOrmDataContext())
+                using (NyhetOrmDbDataContext DataAuthor = new NyhetOrmDbDataContext())
                 {
                     Nyhets.DatoPostet = DateTime.Now;
                     Nyhets.BildeSrc = bildenavn;
@@ -68,7 +68,7 @@ namespace NyheterApp.Controllers
         {
             //LINQ
             //1. koble til ORM (DB)
-            using (DataAuthorOrmDataContext DataAuthor = new DataAuthorOrmDataContext())
+            using (NyhetOrmDbDataContext DataAuthor = new NyhetOrmDbDataContext())
             {
 
                 //2. LINQ-spørringen
@@ -87,7 +87,7 @@ namespace NyheterApp.Controllers
         {
             if (id != null)
             {
-                using (DataAuthorOrmDataContext nyhetOrm = new DataAuthorOrmDataContext())
+                using (NyhetOrmDbDataContext nyhetOrm = new NyhetOrmDbDataContext())
                 {
                     Nyhet valgtArtikkel = (from nyheter in nyhetOrm.Nyhets
                                            where nyheter.Id == id
@@ -113,7 +113,7 @@ namespace NyheterApp.Controllers
                 ViewBag.Brukernavn = (string)Session["innlogget"];
                 //LINQ
                 //1. koble til ORM (DB)
-                using (DataAuthorOrmDataContext DataAuthor = new DataAuthorOrmDataContext())
+                using (NyhetOrmDbDataContext DataAuthor = new NyhetOrmDbDataContext())
                 {
 
                     //2. LINQ-spørringen
@@ -139,7 +139,7 @@ namespace NyheterApp.Controllers
         {
             if (id != null)
             {
-                using (DataAuthorOrmDataContext nyhetOrm = new DataAuthorOrmDataContext())
+                using (NyhetOrmDbDataContext nyhetOrm = new NyhetOrmDbDataContext())
                 {
                     Nyhet valgtArtikkel = (from nyheter in nyhetOrm.Nyhets
                                            where nyheter.Id == id
@@ -154,7 +154,7 @@ namespace NyheterApp.Controllers
         [HttpPost]
         public ActionResult RedigerNyhet(Nyhet nyhet)
         {
-            using (DataAuthorOrmDataContext nyheterOrm = new DataAuthorOrmDataContext())
+            using (NyhetOrmDbDataContext nyheterOrm = new NyhetOrmDbDataContext())
             {
                 Nyhet valgtNyhet = (from nyheter in nyheterOrm.Nyhets
                                     where nyheter.Id == nyhet.Id
@@ -182,7 +182,7 @@ namespace NyheterApp.Controllers
         {
             if (id != null)
             {
-                using (DataAuthorOrmDataContext nyhetOrm = new DataAuthorOrmDataContext())
+                using (NyhetOrmDbDataContext nyhetOrm = new NyhetOrmDbDataContext())
                 {
                     Nyhet valgtArtikkel = (from nyheter in nyhetOrm.Nyhets
                                            where nyheter.Id == id
@@ -199,7 +199,7 @@ namespace NyheterApp.Controllers
         [HttpPost]
         public ActionResult SlettNyhet(Nyhet nyhet)
         {
-            using (DataAuthorOrmDataContext nyheterOrm = new DataAuthorOrmDataContext())
+            using (NyhetOrmDbDataContext nyheterOrm = new NyhetOrmDbDataContext())
             {
                 Nyhet valgtNyhet = (from nyheter in nyheterOrm.Nyhets
                                     where nyheter.Id == nyhet.Id
@@ -222,16 +222,16 @@ namespace NyheterApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult LogIn(Author bruker, Author passord)
+        public ActionResult LogIn(Forfatter bruker, Forfatter passord)
         {
 
             try
             {
-                using (DataAuthorOrmDataContext brukerOrm = new DataAuthorOrmDataContext())
+                using (NyhetOrmDbDataContext brukerOrm = new NyhetOrmDbDataContext())
                 {
 
-                    List<Author> brukerData = (from Author in brukerOrm.Authors
-                                               select Author).ToList();
+                    List<Forfatter> brukerData = (from forfatter in brukerOrm.Forfatters
+                                               select forfatter).ToList();
 
                     String brukernavnPost = bruker.Brukernavn;
                     String passordPost = bruker.Passord;

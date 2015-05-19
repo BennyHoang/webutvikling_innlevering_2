@@ -123,10 +123,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AuthorOrm.designer.cs">
+    <Compile Include="Models\NyhetOrm.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AuthorOrm.dbml</DependentUpon>
+      <DependentUpon>NyhetOrm.dbml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -135,9 +135,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="packages.config" />
-    <Content Include="Models\AuthorOrm.dbml">
+    <Content Include="Models\NyhetOrm.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>AuthorOrm.designer.cs</LastGenOutput>
+      <LastGenOutput>NyhetOrm.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -165,8 +165,8 @@
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Models\AuthorOrm.dbml.layout">
-      <DependentUpon>AuthorOrm.dbml</DependentUpon>
+    <None Include="Models\NyhetOrm.dbml.layout">
+      <DependentUpon>NyhetOrm.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <PropertyGroup>
