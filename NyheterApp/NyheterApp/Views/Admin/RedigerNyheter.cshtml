@@ -5,6 +5,11 @@
     ViewBag.Title = "RedigerNyheter";
 }
 
+@{
+    string loggOutTekst = "Logg ut " + ViewBag.Brukernavn;
+}
+
+@Html.ActionLink(loggOutTekst, "LogOut")
 <h2>Rediger nyheter</h2>
 
 

@@ -14,7 +14,22 @@ namespace NyheterApp.Controllers
         [HttpGet]
         public ActionResult LagNyNyhet()
         {
-            return View();
+
+            //denne sjekker om bruker er innlogget
+
+            if (Session["innlogget"] != null)
+            {
+                ViewBag.Brukernavn = (string)Session["innlogget"];
+
+
+                return View();
+            }
+            //Dersom bruker ikke er innlogget må han logge inn 
+            else
+            {
+                return RedirectToAction("LogIn");
+             }
+
         }
 
         [HttpPost]
@@ -87,39 +102,31 @@ namespace NyheterApp.Controllers
         }
 
         //Rediger nyehter
-        /*
-       public ActionResult RedigerNyhet(int? id)
-        {
-            if (id != null)
-            {
-                using (DataAuthorOrmDataContext nyhetOrm = new DataAuthorOrmDataContext())
-                {
-                    Nyhet valgtArtikkel = (from Nyhets in nyhetOrm.Nyhets
-                                           where Nyhets.Id == id
-                                           select Nyhets).SingleOrDefault();
-                    return View(valgtArtikkel);
-                }
-
-            }
-
-            return View();
-        }
-         */
-
-
+ 
         public ActionResult RedigerNyheter()
         {
-            //LINQ
-            //1. koble til ORM (DB)
-            using (DataAuthorOrmDataContext DataAuthor = new DataAuthorOrmDataContext())
+
+
+            //Først sjekke etter innlogget session
+            if (Session["innlogget"] != null)
             {
+                ViewBag.Brukernavn = (string)Session["innlogget"];
+                //LINQ
+                //1. koble til ORM (DB)
+                using (DataAuthorOrmDataContext DataAuthor = new DataAuthorOrmDataContext())
+                {
 
-                //2. LINQ-spørringen
-                List<Nyhet> NyhetsListe = (from nyheter in DataAuthor.Nyhets
-                                           select nyheter).ToList();
-
-                //3. Sende resultat av LINQ-spørring til View
-                return View(NyhetsListe);
+                    //2. LINQ-spørringen
+                    List<Nyhet> NyhetsListe = (from nyheter in DataAuthor.Nyhets
+                                               select nyheter).ToList();
+                    //3. Sende resultat av LINQ-spørring til View
+                    return View(NyhetsListe);
+                }
+            }
+            //Dersom bruker ikke er innlogget må han logge inn 
+            else
+            {
+                return RedirectToAction("LogIn");
             }
         }
 
@@ -211,9 +218,6 @@ namespace NyheterApp.Controllers
         //Her kommer biten som tar seg av innlogging
         [HttpGet]
         public ActionResult LogIn() {
-
-
-
             return View();
         }
 
@@ -261,9 +265,11 @@ namespace NyheterApp.Controllers
         }
     
 
-
         public ActionResult LogOut() {
-           return View();
+
+            //Fjerner session ved log ut
+            Session.Remove("innlogget");
+            return RedirectToAction("VisAlleNyheter");
             
         }
 

@@ -4,7 +4,11 @@
 @{
     ViewBag.Title = "LagNyNyhet";
 }
+@{
+    string loggOutTekst = "Logg ut " + ViewBag.Brukernavn;
+}
 
+@Html.ActionLink(loggOutTekst, "LogOut")
 <h2>LagNyhet</h2>
 
 
