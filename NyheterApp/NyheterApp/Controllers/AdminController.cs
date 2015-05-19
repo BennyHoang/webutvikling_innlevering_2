@@ -42,6 +42,7 @@ namespace NyheterApp.Controllers
                 {
                     Nyhets.DatoPostet = DateTime.Now;
                     Nyhets.BildeSrc = bildenavn;
+                    Nyhets.ForfatterId = (int)Session["brukerId"];
                     nyhetOrm.Nyhets.InsertOnSubmit(Nyhets);
                     nyhetOrm.SubmitChanges();
                 }
@@ -230,13 +231,13 @@ namespace NyheterApp.Controllers
 
                     String brukernavnPost = bruker.Brukernavn;
                     String passordPost = bruker.Passord;
-
                     //løkken kjører gjennom alle brukere for å se om brukernavnet stemmer med en bruker
                     foreach (var brukere in brukerData)
                     {
                         if (brukere.Brukernavn == brukernavnPost && brukere.Passord == passordPost)
                         {
                             Session.Add("innlogget", bruker.Brukernavn);
+                            Session.Add("brukerId", brukere.Id);
                             return RedirectToAction("RedigerNyheter");
 
                         }

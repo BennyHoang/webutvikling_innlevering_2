@@ -9,7 +9,7 @@
 }
 
 @Html.ActionLink(loggOutTekst, "LogOut")
-<h2>LagNyhet</h2>
+<h2>LagNyhet @ViewBag.brukerId</h2>
 
 
 @using (Html.BeginForm("LagNyNyhet", "Admin", FormMethod.Post, new { enctype="multipart/form-data" }))
