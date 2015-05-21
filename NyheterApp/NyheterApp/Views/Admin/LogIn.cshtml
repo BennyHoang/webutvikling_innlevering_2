@@ -16,4 +16,8 @@
 }
 
 <p>@ViewBag.innlogging</p>
-<p>@ViewBag.feilKobleTilDatabaseInnlogging</p>
+
+@if (ViewBag.feilKobleTilDatabaseInnlogging != null)
+{
+    <h3>@ViewBag.feilKobleTilDatabaseInnlogging</h3>
+}
