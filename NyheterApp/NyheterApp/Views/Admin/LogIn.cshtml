@@ -15,9 +15,9 @@
     <input type="submit" value="Logg inn" />
 }
 
-<p>@ViewBag.innlogging</p>
+<p class="tilbakemelding">@ViewBag.innlogging</p>
 
 @if (ViewBag.feilKobleTilDatabaseInnlogging != null)
 {
-    <h3>@ViewBag.feilKobleTilDatabaseInnlogging</h3>
+    <p class="tilbakemelding">@ViewBag.feilKobleTilDatabaseInnlogging</p>
 }

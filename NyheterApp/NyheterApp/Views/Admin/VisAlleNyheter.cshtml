@@ -24,10 +24,10 @@
     }
     else
     {
-        <p>Ingen nyhetsartikler er skrevet enda</p>
+        <p class="tilbakemelding">Ingen nyhetsartikler er skrevet enda</p>
     }
 
 @if (ViewBag.feilVisAlleNyheter != null)
 {
-    <h3>@ViewBag.feilVisAlleNyheter</h3>
+    <p class="tilbakemelding">@ViewBag.feilVisAlleNyheter</p>
 }

@@ -38,10 +38,10 @@
 }
 else
 {
-    <p>Ingen nyhetsartikler funnet</p>
+    <p class="tilbakemelding">Ingen nyhetsartikler funnet</p>
 }
 
 @if (ViewBag.feilRedigerNyheter != null)
 {
-    <h3>@ViewBag.feilRedigerNyheter</h3>
+    <p class="tilbakemelding">@ViewBag.feilRedigerNyheter</p>
 }
