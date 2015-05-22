@@ -52,7 +52,7 @@ namespace NyheterApp.Controllers
             catch (Exception ex)
             {
                 ViewBag.LastetOpp = false;
-                ViewBag.FeilmeldingNyNyhet = "Databasefeil skjedde, kontakt admin dersom feilen vedvarer " + ex.Message;
+                ViewBag.FeilmeldingNyNyhet = "Databasefeil skjedde, kontakt admin dersom feilen vedvarer ";
             }
             return View();
         }
@@ -309,10 +309,6 @@ namespace NyheterApp.Controllers
             
         }
 
-        // GET: /Admin/
-        public ActionResult Index()
-        {
-            return View();
-        }
+ 
 	}
 }
