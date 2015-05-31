@@ -2,6 +2,7 @@
 background-color:white;
 margin:0;
 padding:0;
+font-family: 'Open Sans', sans-serif;
 }
 
 .midtstill {
@@ -101,4 +102,36 @@ height:300px;
 }
 .nyhets-tekst{
     width:70%;
+}
+
+/* LOGIN STYLE */
+.login{
+    padding:10px;
+    margin-top:10px;
+}
+
+.login input[type="submit"]{
+    margin-top:20px;
+}
+
+/* REDIGER NYHET STYLE */
+
+#rediger-tittel, #rediger-tekst, #artikkelTekst{
+    padding:10px;
+}
+
+#artikkelTekst{
+    height:200px;
+    width:100%;
+}
+
+#rediger-tekst{
+    width:60%;
+    height:200px;
+}
+
+.tilbakemelding{
+    padding:10px;
+    border-radius:5px;
+    text-align:center; 
 }

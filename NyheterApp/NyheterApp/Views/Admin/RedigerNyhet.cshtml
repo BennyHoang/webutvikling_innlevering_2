@@ -7,13 +7,11 @@
 <label>Id @Model.Id</label>
 @using (Html.BeginForm())
 {
-    
-    
-    
-              
-    @Html.TextBoxFor(Nyhet => Nyhet.Tittel)
-    @Html.TextAreaFor(Nyhet => Nyhet.Tekst)
-
+    <h3>Tittel</h3>          
+    @Html.TextBoxFor(Nyhet => Nyhet.Tittel, new { id = "rediger-tittel"})
+    <h3>Tekst</h3>
+    @Html.TextAreaFor(Nyhet => Nyhet.Tekst, new { id = "rediger-tekst"})
+    <br />
     <input type="submit" value="Endre Tittel" />
 }
 

@@ -78,18 +78,33 @@ namespace NyheterApp.Controllers
  
         public ActionResult RedigerNyheter()
         {
-
-
-            HentAlleNyheter();
-            return View();
+            //denne sjekker om bruker er innlogget
+            if (Session["innlogget"] != null)
+            {
+                ViewBag.Brukernavn = (string)Session["innlogget"];
+                HentAlleNyheter();
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("LogIn");
+            }
         }
 
 
         public ActionResult RedigerNyhet(int? id)
         {
-            HentEnNyhet(id);
+            if (Session["innlogget"] != null)
+            {
+                ViewBag.Brukernavn = (string)Session["innlogget"];
+                HentEnNyhet(id);
+                return View();
+            }
 
-            return View();
+            else
+            {
+                return RedirectToAction("LogIn");
+            }
         }
 
         
