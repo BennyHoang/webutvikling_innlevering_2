@@ -62,47 +62,15 @@ namespace NyheterApp.Controllers
         //Vis alle nyheter fra databasen   
         public ActionResult VisAlleNyheter()
         {
-
-            try { 
-            using (NyhetOrmDbDataContext nyhetOrm = new NyhetOrmDbDataContext())
-            {
-                List<Nyhet> NyhetsListe = (from nyheter in nyhetOrm.Nyhets
-                                           select nyheter).ToList();
-                return View(NyhetsListe);
-
-                }
-            } catch
-            {
-                ViewBag.feilVisAlleNyheter = "Det skjedde en feil, prøv igjen, eller kontakt admin dersom feilen vedvarer.";
-
-            }
-
+            HentAlleNyheter();
             return View();
-
-
         }
 
         //Vis en nyhet
 
         public ActionResult VisEnNyhet(int? id)
         {
-            try
-            {
-                if (id != null)
-                {
-                    using (NyhetOrmDbDataContext nyhetOrm = new NyhetOrmDbDataContext())
-                    {
-                        Nyhet valgtArtikkel = (from nyheter in nyhetOrm.Nyhets
-                                               where nyheter.Id == id
-                                               select nyheter).SingleOrDefault();
-                        return View(valgtArtikkel);
-                    }
-
-                }
-            }catch
-            {
-                ViewBag.feilVisEnNyhet = "Databasefeil skjedde, kontakt admin dersom feilen vedvarer ";
-            }
+            HentEnNyhet(id);
             return View();
         }
 
@@ -112,60 +80,20 @@ namespace NyheterApp.Controllers
         {
 
 
-            //Først sjekke etter innlogget session
-            if (Session["innlogget"] != null)
-            {
-
-                try { 
-                ViewBag.Brukernavn = (string)Session["innlogget"];
-                    //LINQ
-                    //1. koble til ORM (DB)
-                    using (NyhetOrmDbDataContext nyhetOrm = new NyhetOrmDbDataContext())
-                    {
-
-                        //2. LINQ-spørringen
-                        List<Nyhet> NyhetsListe = (from nyheter in nyhetOrm.Nyhets
-                                                   select nyheter).ToList();
-                        //3. Sende resultat av LINQ-spørring til View
-                        return View(NyhetsListe);
-                    }
-                    }
-                 catch
-                {
-                    ViewBag.feilRedigerNyheter = "Databasefeil skjedde, kontakt admin dersom feilen vedvarer ";
-                }
-            }
-            //Dersom bruker ikke er innlogget må han logge inn 
-            else
-            {
-                return RedirectToAction("LogIn");
-            }
-
+            HentAlleNyheter();
             return View();
         }
 
 
         public ActionResult RedigerNyhet(int? id)
         {
-            if (id != null)
-            {
-                try {
-                    using (NyhetOrmDbDataContext nyhetOrm = new NyhetOrmDbDataContext())
-                    {
-                        Nyhet valgtArtikkel = (from nyheter in nyhetOrm.Nyhets
-                                               where nyheter.Id == id
-                                               select nyheter).SingleOrDefault();
-                        return View(valgtArtikkel);
-                    }
-                }
-                catch 
-                {
-                    ViewBag.feilRedigerNyhet = "Databasefeil skjedde, kontakt admin dersom feilen vedvarer ";
-                }
+            HentEnNyhet(id);
 
-            }
             return View();
         }
+
+        
+
 
         [HttpPost]
         public ActionResult RedigerNyhet(Nyhet nyhet)
@@ -204,23 +132,7 @@ namespace NyheterApp.Controllers
         [HttpGet]
         public ActionResult SlettNyhet(int? id)
         {
-            if (id != null)
-            {
-                try {
-                    using (NyhetOrmDbDataContext nyhetOrm = new NyhetOrmDbDataContext())
-                    {
-                        Nyhet valgtArtikkel = (from nyheter in nyhetOrm.Nyhets
-                                               where nyheter.Id == id
-                                               select nyheter).SingleOrDefault();
-                        return View(valgtArtikkel);
-                    }
-                }
-                catch 
-                {
-                    ViewBag.feilSlettNyhet = "Databasefeil skjedde, kontakt admin dersom feilen vedvarer ";
-                }
-
-            }
+            HentEnNyhet(id);
             return View();
         }
 
@@ -309,6 +221,51 @@ namespace NyheterApp.Controllers
             
         }
 
+        //Denne henter ut alle nyheter fra databasen
+        public ActionResult HentAlleNyheter() {
+            try
+            {
+                using (NyhetOrmDbDataContext nyhetOrm = new NyhetOrmDbDataContext())
+                {
+                    List<Nyhet> NyhetsListe = (from nyheter in nyhetOrm.Nyhets
+                                               select nyheter).ToList();
+                    return View(NyhetsListe);
+
+                }
+            }
+            catch
+            {
+                ViewBag.feilVisAlleNyheter = "Det skjedde en feil, prøv igjen, eller kontakt admin dersom feilen vedvarer.";
+
+            }
+
+            return View();
+        }
+
+        //Denne brukes for å hene nyhet fra databasen når kun en nyhet skal vises
+        public ActionResult HentEnNyhet(int? id)
+        {
+
+            if (id != null)
+            {
+                try
+                {
+                    using (NyhetOrmDbDataContext nyhetOrm = new NyhetOrmDbDataContext())
+                    {
+                        Nyhet valgtArtikkel = (from nyheter in nyhetOrm.Nyhets
+                                               where nyheter.Id == id
+                                               select nyheter).SingleOrDefault();
+                        return View(valgtArtikkel);
+                    }
+                }
+                catch
+                {
+                    ViewBag.feilRedigerNyhet = "Databasefeil skjedde, kontakt admin dersom feilen vedvarer ";
+                }
+
+            }
+            return View();
+        }
  
 	}
 }
