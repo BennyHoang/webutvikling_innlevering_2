@@ -260,7 +260,7 @@ namespace NyheterApp.Controllers
                 }
                 catch
                 {
-                    ViewBag.feilRedigerNyhet = "Databasefeil skjedde, kontakt admin dersom feilen vedvarer ";
+                    ViewBag.feilEnNyhet = "Databasefeil skjedde, kontakt admin dersom feilen vedvarer ";
                 }
 
             }
